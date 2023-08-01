@@ -8,7 +8,7 @@ import { RootState } from "./store"
 import { clearToken } from "./features/auth/authSlice"
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_BASE_URL,
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
   prepareHeaders: (
     headers: Headers,
 
