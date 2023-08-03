@@ -10,7 +10,7 @@ const MainLayout = ({ children }: PropsWithChildren) => {
       <Navbar />
       <div className="flex">
         <SideNav />
-        <main className="fixed left-[250px] top-[64px] right-0 bottom-0 p-5">
+        <main className="fixed left-0 lg:left-[250px] top-[64px] right-0 bottom-0 p-5 overflow-auto">
           {children}
         </main>
       </div>

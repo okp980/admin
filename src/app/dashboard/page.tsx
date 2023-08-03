@@ -1,9 +1,11 @@
+"use client"
+import Dashboard from "@/components/dashboard/dashboard"
 import React from "react"
 
 type Props = {}
 
 const DashboardPage = (props: Props) => {
-  return <div>DashboardPage</div>
+  return <Dashboard />
 }
 
 export default DashboardPage
