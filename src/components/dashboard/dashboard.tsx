@@ -5,6 +5,8 @@ import DashboardCard from "../ui/cards/dashboard-card"
 import BarChart from "../ui/chart/bar-chart"
 import { useGetOrdersQuery } from "@/redux/services/orders"
 import RecentOrders from "../order/recent-orders"
+import PopularProducts from "../products/popular-products"
+import { useGetProductsQuery } from "@/redux/services/products"
 
 type Props = {}
 
@@ -16,6 +18,7 @@ const Dashboard = (props: Props) => {
     isError,
   } = useGetAnalyticsQuery()
   const { data: orders, isLoading: isLoadingOrders } = useGetOrdersQuery()
+  const { data: products, isLoading: isLoadingProducts } = useGetProductsQuery()
 
   if (isLoading || isLoadingOrders) return <Loader />
 
@@ -78,7 +81,13 @@ const Dashboard = (props: Props) => {
         />
       </div>
 
-      <RecentOrders title="Recent Orders" orders={orders?.data!} />
+      <div className="mb-6">
+        <RecentOrders title="Recent Orders" orders={orders?.data!} />
+      </div>
+
+      <div className="mb-6">
+        <PopularProducts title="Popular Products" products={products?.data!} />
+      </div>
     </>
   )
 }

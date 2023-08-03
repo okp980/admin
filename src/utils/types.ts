@@ -31,6 +31,49 @@ export interface OrderResult {
   id: string
 }
 
+export interface CategoryResult {
+  name: string
+  image: string
+  createdAt: string
+  updatedAt: string
+  id: string
+}
+
+export interface SubCategoryResult {
+  name: string
+  category: CategoryResult
+  image: string
+  createdAt: string
+  updatedAt: string
+
+  id: string
+}
+
+export interface ProductResult {
+  name: string
+  description: string
+  price: number
+  image: string
+  gallery: []
+  sub_category: SubCategoryResult
+  quantity: number
+  tags: []
+  meta: {
+    weight: {
+      unit: string
+      value: number
+    }
+    sizes: string[]
+  }
+  inStock: boolean
+  createdAt: string
+  updatedAt: string
+  category: CategoryResult
+  slug: string
+
+  id: string
+}
+
 export interface ResponseInterface<T> {
   message: string
   success: string
@@ -57,3 +100,5 @@ export interface PaginatedResponse<T> {
 
 export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
+export interface PaginatedProductResult
+  extends PaginatedResponse<ProductResult> {}
