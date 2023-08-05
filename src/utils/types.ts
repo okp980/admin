@@ -74,6 +74,20 @@ export interface ProductResult {
   id: string
 }
 
+export interface PaginatedInfo {
+  total: number
+  current: number
+  limit: number
+  next: {
+    page: number
+    limit: number
+  } | null
+  previous: {
+    page: number
+    limit: number
+  } | null
+}
+
 export interface ResponseInterface<T> {
   message: string
   success: string
@@ -83,18 +97,7 @@ export interface ResponseInterface<T> {
 export interface PaginatedResponse<T> {
   message: string
   success: string
-  pagination: {
-    current: number
-    limit: number
-    next: {
-      page: number
-      limit: number
-    } | null
-    previous: {
-      page: number
-      limit: number
-    } | null
-  }
+  pagination: PaginatedInfo
   data: T[]
 }
 
@@ -102,3 +105,7 @@ export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedProductResult
   extends PaginatedResponse<ProductResult> {}
+export interface CategoryAllResultResponse
+  extends ResponseInterface<CategoryResult[]> {}
+export interface SubCategoryAllResultResponse
+  extends ResponseInterface<SubCategoryResult[]> {}

@@ -1,6 +1,10 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
-import { PaginatedOrderResult, PaginatedProductResult } from "@/utils/types"
+import {
+  PaginatedOrderResult,
+  PaginatedProductResult,
+  ProductResult,
+} from "@/utils/types"
 
 const ordersApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -9,7 +13,13 @@ const ordersApi = apiSlice.injectEndpoints({
         url: API_ENPOINTS.products,
       }),
     }),
+    deleteProduct: build.mutation<Partial<ProductResult>, string>({
+      query: (id: string) => ({
+        url: `${API_ENPOINTS.products}/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 })
 
-export const { useGetProductsQuery } = ordersApi
+export const { useGetProductsQuery, useDeleteProductMutation } = ordersApi

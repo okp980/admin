@@ -4,6 +4,7 @@ import { apiSlice } from "./apiSlice"
 import { persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import AuthReducer from "./features/auth/authSlice"
+import ModalReducer from "./features/modal/modalSlice"
 
 const persistConfig = {
   key: "root",
@@ -14,6 +15,7 @@ const persistConfig = {
 const reducers = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: AuthReducer,
+  modal: ModalReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
