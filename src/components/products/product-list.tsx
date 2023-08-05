@@ -21,6 +21,7 @@ import { Table } from "../ui/table/table"
 import Link from "next/link"
 import useModal from "@/hooks/useModal"
 import { MODAL_VIEW } from "@/utils/enums"
+import ActionButtons from "../common/action-buttons"
 
 export type IProps = {
   products: ProductResult[] | undefined
@@ -235,24 +236,15 @@ const ProductList = ({
       align: "center",
       width: 120,
       render: (id: string, record: ProductResult) => (
-        <div className="flex gap-5 items-center justify-center">
-          <div
-            onClick={() => {
-              handleOpenModal({
-                view: MODAL_VIEW.DELETE_PRODUCT,
-                modalPayload: id,
-              })
-            }}
-          >
-            <BsTrash3 size={18} className="text-red-700 cursor-pointer" />
-          </div>
-          <Link href={Routes.products.edit(id)}>
-            <FiEdit
-              size={18}
-              className="cursor-pointer stroke-gray-400 hover:stroke-gray-800"
-            />
-          </Link>
-        </div>
+        <ActionButtons
+          onDelete={() =>
+            handleOpenModal({
+              view: MODAL_VIEW.DELETE_PRODUCT,
+              modalPayload: id,
+            })
+          }
+          href={Routes.products.edit(id)}
+        />
       ),
     },
   ]

@@ -4,4 +4,5 @@ export const API_ENPOINTS = {
   products: "/products",
   categories: "/categories",
   sub_categories: "/subcategories",
+  attributes: "/attributes",
 }

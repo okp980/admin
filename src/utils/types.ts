@@ -31,6 +31,18 @@ export interface OrderResult {
   id: string
 }
 
+export interface AttributeValueResult {
+  id: string
+  value: string
+  meta: string
+}
+
+export interface AttributeResult {
+  id: string
+  name: string
+  values: AttributeValueResult[]
+}
+
 export interface CategoryResult {
   name: string
   image: string
@@ -89,10 +101,14 @@ export interface PaginatedInfo {
 }
 
 export interface ResponseInterface<T> {
-  message: string
+  message?: string
+  count?: number
   success: string
   data: T
 }
+
+export interface AttributeResultResponse
+  extends ResponseInterface<AttributeResult[]> {}
 
 export interface PaginatedResponse<T> {
   message: string
