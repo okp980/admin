@@ -6,4 +6,5 @@ export const API_ENPOINTS = {
   sub_categories: "/subcategories",
   attributes: "/attributes",
   tags: "/tags",
+  users: "/users",
 }

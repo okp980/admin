@@ -98,6 +98,19 @@ export interface ShippingMethod {
   id: string
 }
 
+export interface UserResult {
+  profile: null
+  verified_email: boolean
+  isActive: boolean
+  _id: string
+  email: string
+  role: string
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  id: string
+}
+
 export interface ProductResult {
   name: string
   description: string
@@ -161,6 +174,7 @@ export interface PaginatedResponse<T> {
 
 export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
+export interface PaginatedUserResult extends PaginatedResponse<UserResult> {}
 export interface PaginatedProductResult
   extends PaginatedResponse<ProductResult> {}
 export interface PaginatedTagResponse extends PaginatedResponse<TagResult> {}
