@@ -5,4 +5,5 @@ export const API_ENPOINTS = {
   categories: "/categories",
   sub_categories: "/subcategories",
   attributes: "/attributes",
+  tags: "/tags",
 }

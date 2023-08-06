@@ -61,6 +61,11 @@ export interface SubCategoryResult {
   id: string
 }
 
+export interface TagResult {
+  name: string
+  category: CategoryResult
+}
+
 export interface ProductResult {
   name: string
   description: string
@@ -126,6 +131,7 @@ export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedProductResult
   extends PaginatedResponse<ProductResult> {}
+export interface PaginatedTagResponse extends PaginatedResponse<TagResult> {}
 export interface CategoryAllResultResponse
   extends ResponseInterface<CategoryResult[]> {}
 export interface SubCategoryAllResultResponse
