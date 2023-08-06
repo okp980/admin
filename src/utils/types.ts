@@ -110,6 +110,11 @@ export interface ResponseInterface<T> {
 export interface AttributeResultResponse
   extends ResponseInterface<AttributeResult[]> {}
 
+export interface CategoryResultResponse
+  extends ResponseInterface<CategoryResult[]> {}
+export interface SubCategoryResultResponse
+  extends ResponseInterface<SubCategoryResult[]> {}
+
 export interface PaginatedResponse<T> {
   message: string
   success: string

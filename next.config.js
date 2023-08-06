@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "zuraaya-uploads.s3.eu-north-1.amazonaws.com"],
   },
 }
 
