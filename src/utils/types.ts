@@ -16,21 +16,6 @@ export interface Analytics {
   totalYearSaleByMonth: { total: number; month: string }[]
 }
 
-export interface OrderResult {
-  user: string
-  items: string[]
-  totalAmount: number
-  shippingAddress: string[]
-  shippingMethod: string
-  status: OrderStatus
-  refund: boolean
-  createdAt: string
-  updatedAt: string
-
-  payment: string
-  id: string
-}
-
 export interface AttributeValueResult {
   id: string
   value: string
@@ -64,6 +49,53 @@ export interface SubCategoryResult {
 export interface TagResult {
   name: string
   category: CategoryResult
+}
+export interface OrderResult {
+  _id: string
+  user: string
+  items: string[]
+  totalAmount: number
+  shippingAddress: ShippingAddress[]
+  shippingMethod: ShippingMethod
+  status: string
+  refund: boolean
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  payment: string
+  id: string
+}
+
+export interface ShippingAddress {
+  _id: string
+  firstName: string
+  lastName: string
+  email: string
+  phoneNumber: string
+  address: string
+  city: string
+  state: string
+  country: string
+  default: boolean
+  user: string
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  fullName: string
+  full_address: string
+  id: string
+}
+
+export interface ShippingMethod {
+  _id: string
+  title: string
+  description: string
+  duration: number
+  charge: number
+  createdAt: Date
+  updatedAt: Date
+  __v: number
+  id: string
 }
 
 export interface ProductResult {
@@ -132,6 +164,7 @@ export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedProductResult
   extends PaginatedResponse<ProductResult> {}
 export interface PaginatedTagResponse extends PaginatedResponse<TagResult> {}
+
 export interface CategoryAllResultResponse
   extends ResponseInterface<CategoryResult[]> {}
 export interface SubCategoryAllResultResponse
