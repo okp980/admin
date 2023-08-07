@@ -1,5 +1,10 @@
 import { Routes } from "@/config/routes"
 import { LuLayoutDashboard } from "react-icons/lu"
+import { IoMdToday, IoIosList } from "react-icons/io"
+import { BiCategory, BiCategoryAlt } from "react-icons/bi"
+import { AiFillTags } from "react-icons/ai"
+import { BsBasket3 } from "react-icons/bs"
+import { FaUsersCog, FaShippingFast } from "react-icons/fa"
 
 export const siteSettings = {
   authorizedLinks: [
@@ -21,85 +26,82 @@ export const siteSettings = {
     {
       href: Routes.products.list,
       label: "Products",
-      icon: LuLayoutDashboard,
+      icon: IoMdToday,
     },
     {
       href: Routes.attribute.list,
       label: "Attributes",
-      icon: LuLayoutDashboard,
+      icon: IoIosList,
     },
     {
       href: Routes.category.list,
       label: "Categories",
-      icon: LuLayoutDashboard,
+      icon: BiCategory,
     },
     {
       href: Routes.sub_category.list,
       label: "Sub Categories",
-      icon: LuLayoutDashboard,
+      icon: BiCategoryAlt,
     },
     {
       href: Routes.tag.list,
       label: "Tags",
-      icon: LuLayoutDashboard,
+      icon: AiFillTags,
     },
     {
       href: Routes.order.list,
       label: "Orders",
-      icon: LuLayoutDashboard,
+      icon: BsBasket3,
     },
     {
       href: Routes.user.list,
       label: "Users",
-      icon: LuLayoutDashboard,
+      icon: FaUsersCog,
+    },
+
+    {
+      href: Routes.shipping.list,
+      label: "Shippings",
+      icon: FaShippingFast,
     },
     {
-      href: Routes.coupon.list,
+      // href: Routes.coupon.list,
+      href: Routes.dashboard,
       label: "Coupons",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.tax.list,
+      href: Routes.dashboard,
       label: "Taxes",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.shipping.list,
-      label: "Shippings",
-      icon: LuLayoutDashboard,
-    },
-    {
-      href: Routes.withdraw.list,
+      href: Routes.dashboard,
       label: "Withdraws",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.message.list,
+      href: Routes.dashboard,
       label: "Messages",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.refund.list,
+      href: Routes.dashboard,
       label: "Refunds",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.question.list,
+      href: Routes.dashboard,
       label: "Questions",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.storeNotice.list,
+      href: Routes.dashboard,
       label: "Store Notice",
       icon: LuLayoutDashboard,
     },
     {
-      href: Routes.reviews.list,
-      label: "Reviews",
-      icon: LuLayoutDashboard,
-    },
-    {
-      href: Routes.settings,
+      href: Routes.dashboard,
       label: "Reviews",
       icon: LuLayoutDashboard,
     },

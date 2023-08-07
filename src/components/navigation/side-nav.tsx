@@ -21,7 +21,7 @@ const SideNavMap = () => {
 
 const SideNav = (props: Props) => {
   return (
-    <div className="flex flex-col space-y-6 py-3 bg-white p-5">
+    <div className="flex flex-col space-y-6 py-3 bg-white  p-5">
       <SideNavMap />
     </div>
   )

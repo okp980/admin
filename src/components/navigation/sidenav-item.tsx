@@ -9,11 +9,11 @@ type Props = {
 
 const SideNavItem = ({ Icon, label, href }: Props) => {
   return (
-    <Link href={href} className="flex gap-3 items-center">
+    <Link href={href} className="flex gap-5 items-center">
       <span>
-        <Icon size={30} classname="text-gray-700" />
+        <Icon size={20} className="text-gray-500" />
       </span>
-      <span className="text-base text-gray-700">{label}</span>
+      <span className="text-base text-gray-500">{label}</span>
     </Link>
   )
 }
