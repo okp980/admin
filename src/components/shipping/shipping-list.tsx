@@ -5,12 +5,15 @@ import ActionButtons from "../common/action-buttons"
 import { MODAL_VIEW } from "@/utils/enums"
 import useModal from "@/hooks/useModal"
 import { Table } from "../ui/table/table"
-import { ShippingMethod } from "@/utils/types"
+import { PaginatedInfo, ShippingMethod } from "@/utils/types"
+import Pagination from "../ui/pagination/pagination"
 
 export type IProps = {
   shipping: ShippingMethod[] | undefined
+  paginatorInfo: PaginatedInfo | null
+  onPagination: (current: number) => void
 }
-const ShippingList = ({ shipping }: IProps) => {
+const ShippingList = ({ shipping, paginatorInfo, onPagination }: IProps) => {
   const { handleOpenModal } = useModal()
 
   let columns = [
@@ -70,16 +73,29 @@ const ShippingList = ({ shipping }: IProps) => {
   ]
 
   return (
-    <div className="mb-8 overflow-hidden rounded shadow">
-      <Table
-        // @ts-ignore
-        columns={columns}
-        emptyText={""}
-        data={shipping}
-        rowKey="id"
-        scroll={{ x: 380 }}
-      />
-    </div>
+    <>
+      <div className="mb-8 overflow-hidden rounded shadow">
+        <Table
+          // @ts-ignore
+          columns={columns}
+          emptyText={""}
+          data={shipping}
+          rowKey="id"
+          scroll={{ x: 380 }}
+        />
+      </div>
+      {!!paginatorInfo && (
+        <div className="flex items-center justify-end">
+          <Pagination
+            total={paginatorInfo.total}
+            current={paginatorInfo.current}
+            pageSize={paginatorInfo.limit}
+            onChange={onPagination}
+            showLessItems
+          />
+        </div>
+      )}
+    </>
   )
 }
 

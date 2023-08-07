@@ -198,6 +198,8 @@ export interface PaginatedSubCategoryResponse
   extends PaginatedResponse<SubCategoryResult> {}
 export interface PaginatedCategoryResponse
   extends PaginatedResponse<CategoryResult> {}
+export interface PaginatedShippingMethod
+  extends PaginatedResponse<ShippingMethod> {}
 
 export interface CategoryAllResultResponse
   extends ResponseInterface<CategoryResult[]> {}

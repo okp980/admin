@@ -8,12 +8,16 @@ import LinkButton from "@/components/ui/link-button"
 import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
 import { useGetShippingsQuery } from "@/redux/services/shipping"
-import React from "react"
+import React, { useState } from "react"
 
 type Props = {}
 
 const ShippingsPage = (props: Props) => {
-  const { data, isLoading, isError, error } = useGetShippingsQuery()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isError, error } = useGetShippingsQuery({
+    page,
+    limit: 10,
+  })
   if (isLoading)
     return (
       <div className="h-full w-full flex items-center justify-center">
@@ -51,7 +55,13 @@ const ShippingsPage = (props: Props) => {
           </LinkButton>
         </div>
       </Card>
-      <ShippingList shipping={data?.data} />
+      <ShippingList
+        shipping={data?.data}
+        paginatorInfo={data?.pagination!}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
+      />
     </>
   )
 }
