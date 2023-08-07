@@ -7,21 +7,48 @@ import { useGetOrdersQuery } from "@/redux/services/orders"
 import RecentOrders from "../order/recent-orders"
 import PopularProducts from "../products/popular-products"
 import { useGetProductsQuery } from "@/redux/services/products"
+import ErrorMessage from "../ui/error-message"
 
 type Props = {}
 
 const Dashboard = (props: Props) => {
   const {
     data: analytics,
-    isLoading,
-    isSuccess,
-    isError,
+    isLoading: isLoadingAnalytics,
+    isError: isAnalyticsError,
+    error: analyticsError,
   } = useGetAnalyticsQuery()
-  const { data: orders, isLoading: isLoadingOrders } = useGetOrdersQuery()
-  const { data: products, isLoading: isLoadingProducts } = useGetProductsQuery()
+  const {
+    data: orders,
+    isLoading: isLoadingOrders,
+    isError: isOrderError,
+    error: orderError,
+  } = useGetOrdersQuery()
+  const {
+    data: products,
+    isLoading: isLoadingProducts,
+    isError: isProductsError,
+    error: productError,
+  } = useGetProductsQuery()
 
-  if (isLoading || isLoadingOrders) return <Loader />
+  if (isLoadingAnalytics || isLoadingOrders || isLoadingProducts)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    )
 
+  if (isAnalyticsError || isOrderError || isProductsError) {
+    const errorMessage: any = isAnalyticsError
+      ? analyticsError
+      : isOrderError
+      ? orderError
+      : isProductsError
+      ? productError
+      : null
+
+    return <ErrorMessage message={errorMessage?.data.error} />
+  }
   let salesByYear: number[] = Array.from({ length: 12 }, (_) => 0)
   if (!!analytics?.data?.totalYearSaleByMonth?.length) {
     salesByYear = analytics?.data.totalYearSaleByMonth.map((item: any) =>

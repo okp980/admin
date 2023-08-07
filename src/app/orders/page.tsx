@@ -2,13 +2,27 @@
 import Card from "@/components/common/card"
 import Search from "@/components/common/search"
 import OrdersList from "@/components/orders/orders-list"
+import ErrorMessage from "@/components/ui/error-message"
+import Loader from "@/components/ui/loader/loader"
 import { useGetOrdersQuery } from "@/redux/services/orders"
 import React from "react"
 
 type Props = {}
 
 const OrdersPage = (props: Props) => {
-  const { data, isLoading, isError } = useGetOrdersQuery()
+  const { data, isLoading, isError, error } = useGetOrdersQuery()
+  if (isLoading)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    )
+
+  if (isError) {
+    const errorMessage: any = isError ? error : null
+
+    return <ErrorMessage message={errorMessage?.data.error} />
+  }
   return (
     <>
       <Card className="mb-8 flex flex-col items-center xl:flex-row">

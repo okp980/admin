@@ -2,7 +2,9 @@
 import Card from "@/components/common/card"
 import Search from "@/components/common/search"
 import TagsList from "@/components/tags/tags-list"
+import ErrorMessage from "@/components/ui/error-message"
 import LinkButton from "@/components/ui/link-button"
+import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
 import { useGetTagsQuery } from "@/redux/services/tags"
 import React from "react"
@@ -10,7 +12,19 @@ import React from "react"
 type Props = {}
 
 const TagsPage = (props: Props) => {
-  const { data, isLoading, isError } = useGetTagsQuery()
+  const { data, isLoading, isError, error } = useGetTagsQuery()
+  if (isLoading)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    )
+
+  if (isError) {
+    const errorMessage: any = isError ? error : null
+
+    return <ErrorMessage message={errorMessage?.data.error} />
+  }
   return (
     <>
       <Card className="mb-8 flex flex-col items-center xl:flex-row">

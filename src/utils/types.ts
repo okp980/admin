@@ -157,6 +157,11 @@ export interface ResponseInterface<T> {
   data: T
 }
 
+export interface ErrorResponse {
+  message: string
+  status: number
+}
+
 export interface AttributeResultResponse
   extends ResponseInterface<AttributeResult[]> {}
 

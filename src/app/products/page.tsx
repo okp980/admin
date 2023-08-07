@@ -7,15 +7,30 @@ import { BsArrowUp, BsArrowDown } from "react-icons/bs"
 import cn from "classnames"
 import CategoryTypeFilter from "@/components/products/category-type-filter"
 import { useGetProductsQuery } from "@/redux/services/products"
+import Loader from "@/components/ui/loader/loader"
+import ErrorMessage from "@/components/ui/error-message"
 
 type Props = {}
 
 const ProductsPage = (props: Props) => {
   const [visible, setVisible] = useState(false)
-  const { data: products, isLoading, isError } = useGetProductsQuery()
+  const { data: products, isLoading, isError, error } = useGetProductsQuery()
 
   const toggleVisible = () => {
     setVisible((v) => !v)
+  }
+
+  if (isLoading)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    )
+
+  if (isError) {
+    const errorMessage: any = isError ? error : null
+
+    return <ErrorMessage message={errorMessage?.data.error} />
   }
   return (
     <>

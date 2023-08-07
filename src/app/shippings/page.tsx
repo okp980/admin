@@ -3,7 +3,9 @@
 import Card from "@/components/common/card"
 import Search from "@/components/common/search"
 import ShippingList from "@/components/shipping/shipping-list"
+import ErrorMessage from "@/components/ui/error-message"
 import LinkButton from "@/components/ui/link-button"
+import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
 import { useGetShippingsQuery } from "@/redux/services/shipping"
 import React from "react"
@@ -11,7 +13,19 @@ import React from "react"
 type Props = {}
 
 const ShippingsPage = (props: Props) => {
-  const { data, isLoading, isError } = useGetShippingsQuery()
+  const { data, isLoading, isError, error } = useGetShippingsQuery()
+  if (isLoading)
+    return (
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    )
+
+  if (isError) {
+    const errorMessage: any = isError ? error : null
+
+    return <ErrorMessage message={errorMessage?.data.error} />
+  }
   return (
     <>
       <Card className="mb-8 flex flex-col items-center xl:flex-row">
