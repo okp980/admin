@@ -1,6 +1,6 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
-import { AnalyticsResponse, PaginatedOrderResult } from "@/utils/types"
+import { PaginatedOrderResult } from "@/utils/types"
 
 const ordersApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

@@ -7,4 +7,5 @@ export const API_ENPOINTS = {
   attributes: "/attributes",
   tags: "/tags",
   users: "/users",
+  shipping_methods: "/shipping-methods",
 }

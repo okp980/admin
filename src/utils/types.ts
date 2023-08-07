@@ -173,6 +173,8 @@ export interface PaginatedResponse<T> {
 }
 
 export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
+export interface ShippingMethodResponse
+  extends ResponseInterface<ShippingMethod[]> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedUserResult extends PaginatedResponse<UserResult> {}
 export interface PaginatedProductResult

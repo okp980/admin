@@ -21,11 +21,9 @@ const SideNavMap = () => {
 
 const SideNav = (props: Props) => {
   return (
-    <aside className="w-[250px] hidden lg:block bg-white fixed bottom-0 left-0 top-[64px] z-10 p-5 shadow overflow-y-auto">
-      <div className="flex flex-col space-y-6 py-3">
-        <SideNavMap />
-      </div>
-    </aside>
+    <div className="flex flex-col space-y-6 py-3 bg-white p-5">
+      <SideNavMap />
+    </div>
   )
 }
 

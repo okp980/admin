@@ -16,11 +16,15 @@
     "@types/react-dom": "18.2.7",
     "apexcharts": "^3.41.1",
     "autoprefixer": "10.4.14",
+    "body-scroll-lock": "^4.0.0-beta.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "framer-motion": "^10.15.0",
     "next": "13.4.12",
+    "overlayscrollbars": "^2.2.1",
+    "overlayscrollbars-react": "^0.5.1",
     "postcss": "8.4.27",
     "rc-pagination": "^3.5.0",
     "rc-table": "^7.32.1",
@@ -36,6 +40,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.4"
+    "@tailwindcss/forms": "^0.5.4",
+    "@types/body-scroll-lock": "^3.1.0"
   }
 }
