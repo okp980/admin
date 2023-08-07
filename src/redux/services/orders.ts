@@ -1,12 +1,13 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
-import { PaginatedOrderResult } from "@/utils/types"
+import { PaginatedOrderResult, PaginationParams } from "@/utils/types"
 
 const ordersApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
-    getOrders: build.query<PaginatedOrderResult, void>({
-      query: () => ({
+    getOrders: build.query<PaginatedOrderResult, PaginationParams | void>({
+      query: (params: PaginationParams) => ({
         url: API_ENPOINTS.orders,
+        params,
       }),
     }),
   }),

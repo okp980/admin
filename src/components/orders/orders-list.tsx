@@ -2,15 +2,18 @@ import { useState } from "react"
 
 import { Routes } from "@/config/routes"
 import { Table } from "../ui/table/table"
-import { OrderResult, TagResult } from "@/utils/types"
+import { OrderResult, PaginatedInfo, TagResult } from "@/utils/types"
 import { differenceInDays, formatDistance, parseISO } from "date-fns"
 import Link from "next/link"
 import { AiFillEye } from "react-icons/ai"
+import Pagination from "../ui/pagination/pagination"
 
 export type IProps = {
   orders: OrderResult[] | undefined
+  paginatorInfo: PaginatedInfo | null
+  onPagination: (current: number) => void
 }
-const OrdersList = ({ orders }: IProps) => {
+const OrdersList = ({ orders, paginatorInfo, onPagination }: IProps) => {
   let columns = [
     {
       title: "Tracking Number",
@@ -27,7 +30,7 @@ const OrdersList = ({ orders }: IProps) => {
       key: "shippingMethod",
       align: "center",
       render: (shippingMethod: any) => (
-        <span className="whitespace-nowrap">{shippingMethod.charge}</span>
+        <span className="whitespace-nowrap">{shippingMethod?.charge}</span>
       ),
     },
     {
@@ -87,16 +90,29 @@ const OrdersList = ({ orders }: IProps) => {
   ]
 
   return (
-    <div className="mb-8 overflow-hidden rounded shadow">
-      <Table
-        // @ts-ignore
-        columns={columns}
-        emptyText={""}
-        data={orders}
-        rowKey="id"
-        scroll={{ x: 380 }}
-      />
-    </div>
+    <>
+      <div className="mb-8 overflow-hidden rounded shadow">
+        <Table
+          // @ts-ignore
+          columns={columns}
+          emptyText={""}
+          data={orders}
+          rowKey="id"
+          scroll={{ x: 380 }}
+        />
+      </div>
+      {!!paginatorInfo && (
+        <div className="flex items-center justify-end">
+          <Pagination
+            total={paginatorInfo.total}
+            current={paginatorInfo.current}
+            pageSize={paginatorInfo.limit}
+            onChange={onPagination}
+            showLessItems
+          />
+        </div>
+      )}
+    </>
   )
 }
 

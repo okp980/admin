@@ -5,12 +5,16 @@ import OrdersList from "@/components/orders/orders-list"
 import ErrorMessage from "@/components/ui/error-message"
 import Loader from "@/components/ui/loader/loader"
 import { useGetOrdersQuery } from "@/redux/services/orders"
-import React from "react"
+import React, { useState } from "react"
 
 type Props = {}
 
 const OrdersPage = (props: Props) => {
-  const { data, isLoading, isError, error } = useGetOrdersQuery()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isError, error } = useGetOrdersQuery({
+    page,
+    limit: 10,
+  })
   if (isLoading)
     return (
       <div className="h-full w-full flex items-center justify-center">
@@ -34,7 +38,13 @@ const OrdersPage = (props: Props) => {
           <Search onSearch={() => {}} />
         </div>
       </Card>
-      <OrdersList orders={data?.data} />
+      <OrdersList
+        orders={data?.data}
+        paginatorInfo={data?.pagination!}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
+      />
     </>
   )
 }
