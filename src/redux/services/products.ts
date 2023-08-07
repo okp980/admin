@@ -3,14 +3,16 @@ import { apiSlice } from "../apiSlice"
 import {
   PaginatedOrderResult,
   PaginatedProductResult,
+  PaginationParams,
   ProductResult,
 } from "@/utils/types"
 
 const ordersApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<PaginatedProductResult, void>({
-      query: () => ({
+    getProducts: build.query<PaginatedProductResult, PaginationParams | void>({
+      query: (params: PaginationParams) => ({
         url: API_ENPOINTS.products,
+        params,
       }),
     }),
     deleteProduct: build.mutation<Partial<ProductResult>, string>({

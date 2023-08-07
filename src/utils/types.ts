@@ -2,6 +2,15 @@ export enum OrderStatus {
   ORDER_PROCESSING = "order-processing",
 }
 
+export interface PaginationParams {
+  select?: string
+  sort?: string
+  page?: number
+  limit?: number
+  category?: string
+  sub_category?: string
+}
+
 export interface AuthInterface {
   token: string | null
 }

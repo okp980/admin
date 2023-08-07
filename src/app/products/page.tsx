@@ -14,7 +14,19 @@ type Props = {}
 
 const ProductsPage = (props: Props) => {
   const [visible, setVisible] = useState(false)
-  const { data: products, isLoading, isError, error } = useGetProductsQuery()
+  const [page, setPage] = useState(1)
+  const [category, setCategory] = useState("")
+  const [subCategory, setSubCategory] = useState("")
+  const {
+    data: products,
+    isLoading,
+    isError,
+    error,
+  } = useGetProductsQuery({
+    page,
+    category: category.length > 0 ? category : undefined,
+    sub_category: subCategory.length > 0 ? subCategory : undefined,
+  })
 
   const toggleVisible = () => {
     setVisible((v) => !v)
@@ -63,8 +75,15 @@ const ProductsPage = (props: Props) => {
           <div className="mt-5 flex w-full flex-col border-t border-gray-200 pt-5 md:mt-8 md:flex-row md:items-center md:pt-8">
             <CategoryTypeFilter
               className="w-full"
-              onCategoryFilter={() => {}}
-              onSubCategoryFilter={() => {}}
+              onCategoryFilter={(value) => {
+                console.log(value.id)
+                setCategory(value.id)
+              }}
+              onSubCategoryFilter={(value) => {
+                console.log(value.id)
+
+                setSubCategory(value.id)
+              }}
             />
           </div>
         </div>
@@ -72,7 +91,9 @@ const ProductsPage = (props: Props) => {
       <ProductList
         products={products?.data}
         paginatorInfo={products?.pagination!}
-        onPagination={() => {}}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
       />
     </>
   )
