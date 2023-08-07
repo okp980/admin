@@ -6,6 +6,7 @@ export const Routes = {
   forgotPassword: "/forgot-password",
   resetPassword: "/reset-password",
   profile: "/profile",
+  profileUpdate: "/profile-update",
   settings: "/settings",
   tag: {
     ...routesFactory("/tags"),

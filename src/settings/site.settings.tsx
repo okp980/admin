@@ -2,6 +2,16 @@ import { Routes } from "@/config/routes"
 import { LuLayoutDashboard } from "react-icons/lu"
 
 export const siteSettings = {
+  authorizedLinks: [
+    {
+      href: Routes.profileUpdate,
+      label: "Profile",
+    },
+    {
+      href: Routes.logout,
+      label: "Logout",
+    },
+  ],
   sideLinks: [
     {
       href: Routes.dashboard,

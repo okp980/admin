@@ -2,6 +2,7 @@ import React from "react"
 import Logo from "../ui/Logo/logo"
 import { motion } from "framer-motion"
 import { RiMenu2Line } from "react-icons/ri"
+import AuthorizedMenu from "./authorized-menu"
 
 type Props = {
   toggleSidebar: () => void
@@ -20,6 +21,9 @@ const Navbar = ({ toggleSidebar }: Props) => {
         </motion.button>
         <div className="ms-5 me-auto hidden md:flex">
           <Logo />
+        </div>
+        <div className="space-s-8 flex items-center">
+          <AuthorizedMenu />
         </div>
       </nav>
     </header>

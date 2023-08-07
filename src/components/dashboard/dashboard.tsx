@@ -62,7 +62,7 @@ const Dashboard = (props: Props) => {
       <div className="mb-6 flex w-full flex-wrap md:flex-nowrap ">
         <BarChart
           title="Sale History"
-          colors={["#03D3B5"]}
+          colors={["#ce2044"]}
           series={salesByYear}
           categories={[
             "January",
