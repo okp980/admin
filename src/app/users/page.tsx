@@ -7,12 +7,16 @@ import Loader from "@/components/ui/loader/loader"
 import UsersList from "@/components/users/users-list"
 import { Routes } from "@/config/routes"
 import { useGetUsersQuery } from "@/redux/services/users"
-import React from "react"
+import React, { useState } from "react"
 
 type Props = {}
 
 const UsersPage = (props: Props) => {
-  const { data, isLoading, isError, error } = useGetUsersQuery()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isError, error } = useGetUsersQuery({
+    page,
+    limit: 10,
+  })
   if (isLoading)
     return (
       <div className="h-full w-full flex items-center justify-center">
@@ -44,7 +48,13 @@ const UsersPage = (props: Props) => {
           </LinkButton>
         </div>
       </Card>
-      <UsersList users={data?.data} />
+      <UsersList
+        users={data?.data}
+        paginatorInfo={data?.pagination!}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
+      />
     </>
   )
 }
