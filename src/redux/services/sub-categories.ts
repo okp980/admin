@@ -1,12 +1,16 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
-import { SubCategoryAllResultResponse } from "@/utils/types"
+import { PaginatedSubCategoryResponse, PaginationParams } from "@/utils/types"
 
 const subCategoryApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
-    getSubCategories: build.query<SubCategoryAllResultResponse, void>({
-      query: () => ({
+    getSubCategories: build.query<
+      PaginatedSubCategoryResponse,
+      PaginationParams | void
+    >({
+      query: (params: PaginationParams) => ({
         url: API_ENPOINTS.sub_categories,
+        params,
       }),
     }),
   }),

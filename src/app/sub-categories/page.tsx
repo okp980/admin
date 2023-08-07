@@ -7,14 +7,17 @@ import ErrorMessage from "@/components/ui/error-message"
 import LinkButton from "@/components/ui/link-button"
 import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
-import { useGetCategoriesQuery } from "@/redux/services/categories"
 import { useGetSubCategoriesQuery } from "@/redux/services/sub-categories"
-import React from "react"
+import React, { useState } from "react"
 
 type Props = {}
 
 const SubCategoryPage = (props: Props) => {
-  const { data, isLoading, isError, error } = useGetSubCategoriesQuery()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isError, error } = useGetSubCategoriesQuery({
+    page,
+    limit: 10,
+  })
   if (isLoading)
     return (
       <div className="h-full w-full flex items-center justify-center">
@@ -48,7 +51,13 @@ const SubCategoryPage = (props: Props) => {
           </LinkButton>
         </div>
       </Card>
-      <SubCategoriesList subcategories={data?.data} />
+      <SubCategoriesList
+        subcategories={data?.data}
+        paginatorInfo={data?.pagination!}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
+      />
     </>
   )
 }

@@ -1,24 +1,14 @@
 import Image from "next/image"
-import { siteSettings } from "@/settings/site.settings"
-
-import Badge from "@/components/ui/badge/badge"
-
-import { BsTrash3 } from "react-icons/bs"
-import { FiEdit } from "react-icons/fi"
-
-import { useState } from "react"
 
 import { Routes } from "@/config/routes"
 import Pagination from "../ui/pagination/pagination"
 import {
   CategoryResult,
   PaginatedInfo,
-  PaginatedProductResult,
   ProductResult,
   SubCategoryResult,
 } from "@/utils/types"
 import { Table } from "../ui/table/table"
-import Link from "next/link"
 import useModal from "@/hooks/useModal"
 import { MODAL_VIEW } from "@/utils/enums"
 import ActionButtons from "../common/action-buttons"
