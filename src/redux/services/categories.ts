@@ -1,12 +1,21 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
-import { CategoryAllResultResponse, PaginatedOrderResult } from "@/utils/types"
+import {
+  CategoryAllResultResponse,
+  PaginatedCategoryResponse,
+  PaginatedOrderResult,
+  PaginationParams,
+} from "@/utils/types"
 
 const categoryApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
-    getCategories: build.query<CategoryAllResultResponse, void>({
-      query: () => ({
+    getCategories: build.query<
+      PaginatedCategoryResponse,
+      PaginationParams | void
+    >({
+      query: (params: PaginationParams) => ({
         url: API_ENPOINTS.categories,
+        params,
       }),
     }),
   }),

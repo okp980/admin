@@ -196,6 +196,8 @@ export interface PaginatedProductResult
 export interface PaginatedTagResponse extends PaginatedResponse<TagResult> {}
 export interface PaginatedSubCategoryResponse
   extends PaginatedResponse<SubCategoryResult> {}
+export interface PaginatedCategoryResponse
+  extends PaginatedResponse<CategoryResult> {}
 
 export interface CategoryAllResultResponse
   extends ResponseInterface<CategoryResult[]> {}

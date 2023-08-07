@@ -7,12 +7,16 @@ import LinkButton from "@/components/ui/link-button"
 import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
 import { useGetCategoriesQuery } from "@/redux/services/categories"
-import React from "react"
+import React, { useState } from "react"
 
 type Props = {}
 
 const CategoryPage = (props: Props) => {
-  const { data, isLoading, isError, error } = useGetCategoriesQuery()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isError, error } = useGetCategoriesQuery({
+    page,
+    limit: 10,
+  })
   if (isLoading)
     return (
       <div className="h-full w-full flex items-center justify-center">
@@ -44,7 +48,13 @@ const CategoryPage = (props: Props) => {
           </LinkButton>
         </div>
       </Card>
-      <CategoriesList categories={data?.data} />
+      <CategoriesList
+        categories={data?.data}
+        paginatorInfo={data?.pagination!}
+        onPagination={(selectedPage) => {
+          setPage(selectedPage)
+        }}
+      />
     </>
   )
 }
