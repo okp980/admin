@@ -11,7 +11,14 @@ export interface PaginationParams {
   sub_category?: string
 }
 
+export interface AuthBody {
+  email: string
+  password: string
+}
+
 export interface AuthInterface {
+  success?: boolean
+  message?: string
   token: string | null
 }
 

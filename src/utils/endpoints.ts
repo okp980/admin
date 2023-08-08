@@ -8,4 +8,5 @@ export const API_ENPOINTS = {
   tags: "/tags",
   users: "/users",
   shipping_methods: "/shipping-methods",
+  login: "/auth/login-admin",
 }

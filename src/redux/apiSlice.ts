@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react"
 import { RootState } from "./store"
 import { clearToken } from "./features/auth/authSlice"
+import { redirect } from "next/navigation"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
@@ -34,6 +35,7 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
   // check for 401 error
   if (result.error?.status === 401) {
     api.dispatch(clearToken())
+    redirect("/")
   }
 
   return result

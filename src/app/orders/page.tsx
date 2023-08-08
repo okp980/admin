@@ -25,7 +25,7 @@ const OrdersPage = (props: Props) => {
   if (isError) {
     const errorMessage: any = isError ? error : null
 
-    return <ErrorMessage message={errorMessage?.data.error} />
+    return <ErrorMessage message={errorMessage?.data?.error} />
   }
   return (
     <>
