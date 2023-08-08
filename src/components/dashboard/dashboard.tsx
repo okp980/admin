@@ -23,13 +23,13 @@ const Dashboard = (props: Props) => {
     isLoading: isLoadingOrders,
     isError: isOrderError,
     error: orderError,
-  } = useGetOrdersQuery()
+  } = useGetOrdersQuery({ limit: 10 })
   const {
     data: products,
     isLoading: isLoadingProducts,
     isError: isProductsError,
     error: productError,
-  } = useGetProductsQuery()
+  } = useGetProductsQuery({ limit: 10 })
 
   if (isLoadingAnalytics || isLoadingOrders || isLoadingProducts)
     return (

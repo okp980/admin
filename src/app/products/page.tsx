@@ -24,6 +24,7 @@ const ProductsPage = (props: Props) => {
     error,
   } = useGetProductsQuery({
     page,
+    limit: 10,
     category: category.length > 0 ? category : undefined,
     sub_category: subCategory.length > 0 ? subCategory : undefined,
   })
