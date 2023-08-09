@@ -230,7 +230,7 @@ const ProductList = ({
           onDelete={() =>
             handleOpenModal({
               view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              modalPayload: { id },
             })
           }
           href={Routes.products.edit(id)}

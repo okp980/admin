@@ -18,7 +18,7 @@ const useModal = () => {
     modalPayload,
   }: {
     view: MODAL_VIEW
-    modalPayload: string
+    modalPayload: any
   }) => {
     dispatch(openModal({ view, modalPayload }))
   }

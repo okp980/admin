@@ -5,7 +5,7 @@ import { MODAL_VIEW } from "@/utils/enums"
 const initialState: {
   isOpen: boolean
   view: MODAL_VIEW | null
-  data: Partial<{ id: string }> | null
+  data?: Partial<{ id: string }> | null
 } = {
   isOpen: false,
   view: null,
@@ -22,6 +22,7 @@ export const modalSlice = createSlice({
     ) => {
       state.isOpen = true
       state.view = action.payload.view
+      state.data = action.payload?.modalPayload
     },
     closeModal: (state) => {
       state.isOpen = false
