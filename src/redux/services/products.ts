@@ -1,7 +1,6 @@
 import { API_ENPOINTS } from "@/utils/endpoints"
 import { apiSlice } from "../apiSlice"
 import {
-  PaginatedOrderResult,
   PaginatedProductResult,
   PaginationParams,
   ProductResult,

@@ -46,10 +46,9 @@ const tagApi = apiSlice.injectEndpoints({
       ],
     }),
     deleteTag: build.mutation<TagResponse, Partial<TagType>>({
-      query: ({ category, ...body }) => ({
-        url: `${API_ENPOINTS.tags}/${category}`,
+      query: ({ id }) => ({
+        url: `${API_ENPOINTS.tags}/${id}`,
         method: "DELETE",
-        body,
       }),
       invalidatesTags: [PRODUCT_TAG_NAME_TAG],
     }),

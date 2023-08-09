@@ -4,6 +4,7 @@ import Modal from "./modal"
 import useModal from "@/hooks/useModal"
 import { MODAL_VIEW } from "@/utils/enums"
 import ProductDeleteView from "@/components/products/product-delete-view"
+import TagDeleteView from "@/components/tags/tag-delete-view"
 // const ProductDeleteView = dynamic(
 //   () => import("@/components/ui/modal/modal-manager")
 // )
@@ -14,7 +15,8 @@ const renderModal = (view: MODAL_VIEW | null) => {
   switch (view) {
     case MODAL_VIEW.DELETE_PRODUCT:
       return <ProductDeleteView />
-
+    case MODAL_VIEW.DELETE_TAG:
+      return <TagDeleteView />
     default:
       return null
   }

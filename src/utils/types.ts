@@ -3,7 +3,7 @@ export enum OrderStatus {
 }
 
 // Tag Type
-export type TagType = { name: string; category: string }
+export type TagType = { id: string; name: string; category: string }
 
 export interface PaginationParams {
   select?: string

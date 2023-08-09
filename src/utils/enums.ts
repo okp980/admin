@@ -1,3 +1,4 @@
 export enum MODAL_VIEW {
   DELETE_PRODUCT,
+  DELETE_TAG,
 }

@@ -44,8 +44,8 @@ const TagsList = ({ tags, paginatorInfo, onPagination }: IProps) => {
         <ActionButtons
           onDelete={() =>
             handleOpenModal({
-              view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              view: MODAL_VIEW.DELETE_TAG,
+              modalPayload: { id },
             })
           }
           href={Routes.tag.edit(id)}
