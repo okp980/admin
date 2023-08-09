@@ -6,6 +6,7 @@ import {
   PaginationParams,
   ProductResult,
 } from "@/utils/types"
+import { PRODUCT_TAG } from "@/utils/tagsTypes"
 
 const ordersApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -14,12 +15,24 @@ const ordersApi = apiSlice.injectEndpoints({
         url: API_ENPOINTS.products,
         params,
       }),
+      //   @ts-ignore
+      providesTags: (result, error, arg) =>
+        result
+          ? [
+              ...result.data.map(({ id }) => ({
+                type: PRODUCT_TAG,
+                id,
+              })),
+              PRODUCT_TAG,
+            ]
+          : [PRODUCT_TAG],
     }),
     deleteProduct: build.mutation<Partial<ProductResult>, string>({
       query: (id: string) => ({
         url: `${API_ENPOINTS.products}/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [PRODUCT_TAG],
     }),
   }),
 })

@@ -6,7 +6,7 @@ import {
   TagResponse,
   TagType,
 } from "@/utils/types"
-import { PRODUCT_TAG } from "@/utils/tagsTypes"
+import { PRODUCT_TAG_NAME_TAG } from "@/utils/tagsTypes"
 
 const tagApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -19,10 +19,13 @@ const tagApi = apiSlice.injectEndpoints({
       providesTags: (result, error, arg) =>
         result
           ? [
-              ...result.data.map(({ id }) => ({ type: PRODUCT_TAG, id })),
-              PRODUCT_TAG,
+              ...result.data.map(({ id }) => ({
+                type: PRODUCT_TAG_NAME_TAG,
+                id,
+              })),
+              PRODUCT_TAG_NAME_TAG,
             ]
-          : [PRODUCT_TAG],
+          : [PRODUCT_TAG_NAME_TAG],
     }),
     createTag: build.mutation<TagResponse, TagType>({
       query: ({ category, ...body }) => ({
@@ -30,7 +33,7 @@ const tagApi = apiSlice.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: [PRODUCT_TAG],
+      invalidatesTags: [PRODUCT_TAG_NAME_TAG],
     }),
     editTag: build.mutation<TagResponse, Partial<TagType>>({
       query: ({ category, ...body }) => ({
@@ -39,7 +42,7 @@ const tagApi = apiSlice.injectEndpoints({
         body,
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: PRODUCT_TAG, id: arg.category },
+        { type: PRODUCT_TAG_NAME_TAG, id: arg.category },
       ],
     }),
     deleteTag: build.mutation<TagResponse, Partial<TagType>>({
@@ -48,7 +51,7 @@ const tagApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body,
       }),
-      invalidatesTags: [PRODUCT_TAG],
+      invalidatesTags: [PRODUCT_TAG_NAME_TAG],
     }),
   }),
 })
