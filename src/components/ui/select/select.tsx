@@ -3,6 +3,7 @@ import ReactSelect, { Props } from "react-select"
 import { selectStyles } from "./select.styles"
 
 export type Ref = any
+export interface SelectProps extends Props {}
 
 export const Select = React.forwardRef<Ref, Props>((props, ref) => {
   return <ReactSelect ref={ref} styles={selectStyles} {...props} />

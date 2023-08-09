@@ -2,6 +2,9 @@ export enum OrderStatus {
   ORDER_PROCESSING = "order-processing",
 }
 
+// Tag Type
+export type TagType = { name: string; category: string }
+
 export interface PaginationParams {
   select?: string
   sort?: string
@@ -63,6 +66,7 @@ export interface SubCategoryResult {
 }
 
 export interface TagResult {
+  id: string
   name: string
   category: CategoryResult
 }
@@ -185,6 +189,8 @@ export interface CategoryResultResponse
   extends ResponseInterface<CategoryResult[]> {}
 export interface SubCategoryResultResponse
   extends ResponseInterface<SubCategoryResult[]> {}
+
+export interface TagResponse extends ResponseInterface<TagResult> {}
 
 export interface PaginatedResponse<T> {
   message: string
