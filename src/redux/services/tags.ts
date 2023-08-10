@@ -27,6 +27,15 @@ const tagApi = apiSlice.injectEndpoints({
             ]
           : [PRODUCT_TAG_NAME_TAG],
     }),
+    getSingleTag: build.query<TagResponse, string>({
+      query: (id: string) => ({
+        url: `${API_ENPOINTS.tags}/${id}`,
+      }),
+      //   @ts-ignore
+      providesTags: (result, error, arg) => [
+        { type: PRODUCT_TAG_NAME_TAG, id: arg },
+      ],
+    }),
     createTag: build.mutation<TagResponse, TagType>({
       query: ({ category, ...body }) => ({
         url: `${API_ENPOINTS.categories}/${category}/tags`,
@@ -36,13 +45,13 @@ const tagApi = apiSlice.injectEndpoints({
       invalidatesTags: [PRODUCT_TAG_NAME_TAG],
     }),
     editTag: build.mutation<TagResponse, Partial<TagType>>({
-      query: ({ category, ...body }) => ({
-        url: `${API_ENPOINTS.tags}/${category}`,
+      query: ({ id, ...body }) => ({
+        url: `${API_ENPOINTS.tags}/${id}`,
         method: "PUT",
         body,
       }),
       invalidatesTags: (result, error, arg) => [
-        { type: PRODUCT_TAG_NAME_TAG, id: arg.category },
+        { type: PRODUCT_TAG_NAME_TAG, id: arg.id },
       ],
     }),
     deleteTag: build.mutation<TagResponse, Partial<TagType>>({
@@ -60,4 +69,5 @@ export const {
   useCreateTagMutation,
   useEditTagMutation,
   useDeleteTagMutation,
+  useGetSingleTagQuery,
 } = tagApi

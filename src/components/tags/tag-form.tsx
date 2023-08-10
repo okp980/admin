@@ -32,8 +32,17 @@ const TagForm = ({
   onHandleSubmit,
 }: Props) => {
   const router = useRouter()
+  console.log(initialValues)
+
+  const getDefaultValue = () => {
+    const cat = categories.find((c) => c.id === initialValues.category)
+
+    return cat ? { value: cat.id, label: cat.name } : null
+  }
 
   function onSubmit(values: TagType) {
+    console.log(values)
+
     onHandleSubmit(values)
   }
   return (
@@ -67,11 +76,15 @@ const TagForm = ({
                 name="category"
                 options={categories}
                 isLoading={isCategoriesLoading}
+                isClearable
                 className="mb-5"
                 getOptionLabel={(option: any) => option.name}
                 getOptionValue={(option: any) => option.id}
+                defaultValue={getDefaultValue()}
                 onChange={(category: any) => {
-                  setFieldValue("category", category.id)
+                  if (category) {
+                    setFieldValue("category", category.id)
+                  }
                 }}
               />
 
@@ -88,7 +101,7 @@ const TagForm = ({
                 )}
 
                 <Button loading={loading} type="submit">
-                  {type === "create" ? "Create Tag" : "Add Tag"}
+                  {type === "create" ? "Create Tag" : "Update Tag"}
                 </Button>
               </div>
             </Form>
