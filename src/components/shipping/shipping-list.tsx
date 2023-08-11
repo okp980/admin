@@ -62,8 +62,8 @@ const ShippingList = ({ shipping, paginatorInfo, onPagination }: IProps) => {
         <ActionButtons
           onDelete={() =>
             handleOpenModal({
-              view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              view: MODAL_VIEW.DELETE_SHIPPING,
+              modalPayload: { id },
             })
           }
           href={Routes.shipping.edit(id)}

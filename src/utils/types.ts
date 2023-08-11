@@ -5,6 +5,19 @@ export enum OrderStatus {
 // Tag Type
 export type TagType = { id?: string; name: string; category: string }
 export type CategoryType = { id?: string; name: string; image?: Blob | string }
+export type SubCategoryType = {
+  id?: string
+  name: string
+  category: string
+  image?: Blob | string
+}
+export type ShippingType = {
+  id?: string
+  title: string
+  description: string
+  charge: string
+  duration: string
+}
 
 export interface PaginationParams {
   select?: string
@@ -58,7 +71,7 @@ export interface CategoryResult {
 
 export interface SubCategoryResult {
   name: string
-  category: CategoryResult
+  category: CategoryResult | string
   image: string
   createdAt: string
   updatedAt: string
@@ -111,8 +124,8 @@ export interface ShippingMethod {
   _id: string
   title: string
   description: string
-  duration: number
-  charge: number
+  duration: string
+  charge: string
   createdAt: Date
   updatedAt: Date
   __v: number
@@ -189,7 +202,7 @@ export interface AttributeResultResponse
 export interface CategoryResultResponse
   extends ResponseInterface<CategoryResult> {}
 export interface SubCategoryResultResponse
-  extends ResponseInterface<SubCategoryResult[]> {}
+  extends ResponseInterface<SubCategoryResult> {}
 
 export interface TagResponse extends ResponseInterface<TagResult> {}
 
@@ -201,8 +214,9 @@ export interface PaginatedResponse<T> {
 }
 
 export interface AnalyticsResponse extends ResponseInterface<Analytics> {}
+
 export interface ShippingMethodResponse
-  extends ResponseInterface<ShippingMethod[]> {}
+  extends ResponseInterface<ShippingMethod> {}
 export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedUserResult extends PaginatedResponse<UserResult> {}
 export interface PaginatedProductResult

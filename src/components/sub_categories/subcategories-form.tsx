@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import Description from "../ui/description"
 import Card from "../common/card"
@@ -7,23 +8,24 @@ import { useRouter } from "next/navigation"
 import TextField from "../form/textField"
 import SelectField from "../form/selectField"
 import * as yup from "yup"
-import { TagType } from "@/utils/types"
+import { CategoryType, SubCategoryType, TagType } from "@/utils/types"
+import FileField from "../form/fileField"
 
 type Props = {
-  initialValues: TagType
+  initialValues: SubCategoryType
   loading?: boolean
   type: "create" | "update"
+  onHandleSubmit: (value: SubCategoryType) => Promise<void>
   categories: any[]
   isCategoriesLoading: boolean
-  onHandleSubmit: (value: TagType) => Promise<void>
 }
 
-const TagFormSchema = yup.object().shape({
+const SubCategoryFormSchema = yup.object().shape({
   name: yup.string().required("Tag name is required"),
   category: yup.string().required("Category is required"),
 })
 
-const TagForm = ({
+const SubCategoryForm = ({
   initialValues,
   loading,
   type,
@@ -40,7 +42,7 @@ const TagForm = ({
     return cat ? { value: cat.id, label: cat.name } : null
   }
 
-  function onSubmit(values: TagType) {
+  function onSubmit(values: SubCategoryType) {
     console.log(values)
 
     onHandleSubmit(values)
@@ -51,8 +53,8 @@ const TagForm = ({
         title={"Description"}
         details={
           type === "update"
-            ? "Update your tag details and necessary information from here"
-            : "Add your tag details and necessary information from here"
+            ? "Update sub-category details and necessary information from here"
+            : "Add sub-category details and necessary information from here"
         }
         className="w-full px-0 pb-5 sm:w-4/12 sm:py-8 sm:pe-4 md:w-1/3 md:pe-5"
       />
@@ -61,13 +63,29 @@ const TagForm = ({
           onSubmit={onSubmit}
           initialValues={initialValues}
           enableReinitialize
-          validationSchema={TagFormSchema}
+          validationSchema={SubCategoryFormSchema}
         >
           {({ setFieldValue }) => (
             <Form>
+              <FileField
+                name="image"
+                placeholder="Select image for sub category"
+                label="Image"
+                className="mb-5"
+                type="file"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  if (
+                    event &&
+                    event.currentTarget &&
+                    event.currentTarget.files
+                  ) {
+                    setFieldValue("image", event.currentTarget.files[0])
+                  }
+                }}
+              />
               <TextField
                 name="name"
-                placeholder="Enter Tag name"
+                placeholder="Enter sub-category name"
                 label="Name"
                 className="mb-5"
               />
@@ -101,7 +119,9 @@ const TagForm = ({
                 )}
 
                 <Button loading={loading} type="submit">
-                  {type === "create" ? "Create Tag" : "Update Tag"}
+                  {type === "create"
+                    ? "Create Sub-Category"
+                    : "Update Sub-Category"}
                 </Button>
               </div>
             </Form>
@@ -112,4 +132,4 @@ const TagForm = ({
   )
 }
 
-export default TagForm
+export default SubCategoryForm

@@ -6,6 +6,8 @@ import { MODAL_VIEW } from "@/utils/enums"
 import ProductDeleteView from "@/components/products/product-delete-view"
 import TagDeleteView from "@/components/tags/tag-delete-view"
 import CategoryDeleteView from "@/components/categories/category-delete-view"
+import SubCategoryDeleteView from "@/components/sub_categories/subcategory-delete-view"
+import ShippingDeleteView from "@/components/shipping/shipping-delete-view"
 // const ProductDeleteView = dynamic(
 //   () => import("@/components/ui/modal/modal-manager")
 // )
@@ -20,6 +22,10 @@ const renderModal = (view: MODAL_VIEW | null) => {
       return <TagDeleteView />
     case MODAL_VIEW.DELETE_CATEGORY:
       return <CategoryDeleteView />
+    case MODAL_VIEW.DELETE_SUB_CATEGORY:
+      return <SubCategoryDeleteView />
+    case MODAL_VIEW.DELETE_SHIPPING:
+      return <ShippingDeleteView />
     default:
       return null
   }

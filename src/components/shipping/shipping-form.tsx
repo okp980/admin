@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import Description from "../ui/description"
 import Card from "../common/card"
@@ -5,44 +6,32 @@ import { Form, Formik } from "formik"
 import Button from "../ui/button/button"
 import { useRouter } from "next/navigation"
 import TextField from "../form/textField"
-import SelectField from "../form/selectField"
 import * as yup from "yup"
-import { TagType } from "@/utils/types"
+import { ShippingType } from "@/utils/types"
 
 type Props = {
-  initialValues: TagType
+  initialValues: ShippingType
   loading?: boolean
   type: "create" | "update"
-  categories: any[]
-  isCategoriesLoading: boolean
-  onHandleSubmit: (value: TagType) => Promise<void>
+  onHandleSubmit: (value: ShippingType) => Promise<void>
 }
 
-const TagFormSchema = yup.object().shape({
-  name: yup.string().required("Tag name is required"),
-  category: yup.string().required("Category is required"),
+const ShippingFormSchema = yup.object().shape({
+  title: yup.string().required("Tag name is required"),
+  description: yup.string().required("Description is required"),
+  duration: yup.string().required("Duration is required"),
+  charge: yup.string().required("Charge is required"),
 })
 
-const TagForm = ({
+const ShippingForm = ({
   initialValues,
   loading,
   type,
-  categories,
-  isCategoriesLoading,
   onHandleSubmit,
 }: Props) => {
   const router = useRouter()
-  console.log(initialValues)
 
-  const getDefaultValue = () => {
-    const cat = categories?.find((c) => c.id === initialValues.category)
-
-    return cat ? { value: cat.id, label: cat.name } : null
-  }
-
-  function onSubmit(values: TagType) {
-    console.log(values)
-
+  function onSubmit(values: ShippingType) {
     onHandleSubmit(values)
   }
   return (
@@ -51,8 +40,8 @@ const TagForm = ({
         title={"Description"}
         details={
           type === "update"
-            ? "Update your tag details and necessary information from here"
-            : "Add your tag details and necessary information from here"
+            ? "Update shipping method details and necessary information from here"
+            : "Add shipping method details and necessary information from here"
         }
         className="w-full px-0 pb-5 sm:w-4/12 sm:py-8 sm:pe-4 md:w-1/3 md:pe-5"
       />
@@ -61,31 +50,35 @@ const TagForm = ({
           onSubmit={onSubmit}
           initialValues={initialValues}
           enableReinitialize
-          validationSchema={TagFormSchema}
+          validationSchema={ShippingFormSchema}
         >
           {({ setFieldValue }) => (
             <Form>
               <TextField
-                name="name"
-                placeholder="Enter Tag name"
-                label="Name"
+                name="title"
+                placeholder="Enter shipping title"
+                label="Title"
                 className="mb-5"
               />
-              <SelectField
-                label="Category"
-                name="category"
-                options={categories}
-                isLoading={isCategoriesLoading}
-                isClearable
+              <TextField
+                name="description"
+                placeholder="Enter shipping description"
+                label="Description"
                 className="mb-5"
-                getOptionLabel={(option: any) => option.name}
-                getOptionValue={(option: any) => option.id}
-                defaultValue={getDefaultValue()}
-                onChange={(category: any) => {
-                  if (category) {
-                    setFieldValue("category", category.id)
-                  }
-                }}
+              />
+              <TextField
+                name="duration"
+                placeholder="Enter shipping duration"
+                label="Duration"
+                className="mb-5"
+                type="number"
+              />
+              <TextField
+                name="charge"
+                placeholder="Enter shipping charge"
+                label="Charge"
+                className="mb-5"
+                type="number"
               />
 
               <div className="mb-4 text-end">
@@ -101,7 +94,7 @@ const TagForm = ({
                 )}
 
                 <Button loading={loading} type="submit">
-                  {type === "create" ? "Create Tag" : "Update Tag"}
+                  {type === "create" ? "Create Shipping" : "Update Shipping"}
                 </Button>
               </div>
             </Form>
@@ -112,4 +105,4 @@ const TagForm = ({
   )
 }
 
-export default TagForm
+export default ShippingForm

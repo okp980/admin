@@ -11,6 +11,8 @@ import {
   CATEGORY_TAG,
   PRODUCT_TAG,
   PRODUCT_TAG_NAME_TAG,
+  SHIPPING_TAG,
+  SUB_CATEGORY_TAG,
 } from "@/utils/tagsTypes"
 
 const baseQuery = fetchBaseQuery({
@@ -50,6 +52,12 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
 
-  tagTypes: [PRODUCT_TAG, PRODUCT_TAG_NAME_TAG, CATEGORY_TAG],
+  tagTypes: [
+    PRODUCT_TAG,
+    PRODUCT_TAG_NAME_TAG,
+    CATEGORY_TAG,
+    SUB_CATEGORY_TAG,
+    SHIPPING_TAG,
+  ],
   endpoints: (builder) => ({}),
 })

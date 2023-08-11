@@ -14,6 +14,7 @@ type Props = {}
 
 const SubCategoryPage = (props: Props) => {
   const [page, setPage] = useState(1)
+
   const { data, isLoading, isError, error } = useGetSubCategoriesQuery({
     page,
     limit: 10,
@@ -41,7 +42,7 @@ const SubCategoryPage = (props: Props) => {
           <Search onSearch={() => {}} />
 
           <LinkButton
-            href={Routes.category.create}
+            href={Routes.sub_category.create}
             className="h-12 w-full md:w-auto md:ms-6"
           >
             <span className="block md:hidden xl:block">+ Add Sub-Category</span>

@@ -68,7 +68,7 @@ const SubCategoriesList = ({
           onDelete={() =>
             handleOpenModal({
               view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              modalPayload: { id },
             })
           }
           href={Routes.sub_category.edit(id)}
