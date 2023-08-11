@@ -7,7 +7,11 @@ import {
 import { RootState } from "./store"
 import { clearToken } from "./features/auth/authSlice"
 import { redirect } from "next/navigation"
-import { PRODUCT_TAG, PRODUCT_TAG_NAME_TAG } from "@/utils/tagsTypes"
+import {
+  CATEGORY_TAG,
+  PRODUCT_TAG,
+  PRODUCT_TAG_NAME_TAG,
+} from "@/utils/tagsTypes"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
@@ -46,6 +50,6 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: baseQueryWithReauth,
 
-  tagTypes: [PRODUCT_TAG, PRODUCT_TAG_NAME_TAG],
+  tagTypes: [PRODUCT_TAG, PRODUCT_TAG_NAME_TAG, CATEGORY_TAG],
   endpoints: (builder) => ({}),
 })

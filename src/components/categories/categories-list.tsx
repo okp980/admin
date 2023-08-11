@@ -58,8 +58,8 @@ const CategoriesList = ({
         <ActionButtons
           onDelete={() =>
             handleOpenModal({
-              view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              view: MODAL_VIEW.DELETE_CATEGORY,
+              modalPayload: { id },
             })
           }
           href={Routes.category.edit(id)}

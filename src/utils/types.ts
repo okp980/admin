@@ -4,6 +4,7 @@ export enum OrderStatus {
 
 // Tag Type
 export type TagType = { id?: string; name: string; category: string }
+export type CategoryType = { id?: string; name: string; image?: Blob | string }
 
 export interface PaginationParams {
   select?: string
@@ -186,7 +187,7 @@ export interface AttributeResultResponse
   extends ResponseInterface<AttributeResult[]> {}
 
 export interface CategoryResultResponse
-  extends ResponseInterface<CategoryResult[]> {}
+  extends ResponseInterface<CategoryResult> {}
 export interface SubCategoryResultResponse
   extends ResponseInterface<SubCategoryResult[]> {}
 

@@ -4,11 +4,7 @@ import ErrorMessage from "@/components/ui/error-message"
 import Loader from "@/components/ui/loader/loader"
 import { Routes } from "@/config/routes"
 import { useGetCategoriesQuery } from "@/redux/services/categories"
-import {
-  useCreateTagMutation,
-  useEditTagMutation,
-  useGetSingleTagQuery,
-} from "@/redux/services/tags"
+import { useEditTagMutation, useGetSingleTagQuery } from "@/redux/services/tags"
 import { TagType } from "@/utils/types"
 import { useRouter } from "next/navigation"
 import React, { useCallback } from "react"

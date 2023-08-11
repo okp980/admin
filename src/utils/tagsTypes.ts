@@ -1,2 +1,3 @@
 export const PRODUCT_TAG = "PRODUCT_TAG"
 export const PRODUCT_TAG_NAME_TAG = "PRODUCT_TAG_NAME_TAG"
+export const CATEGORY_TAG = "CATEGORY_TAG"

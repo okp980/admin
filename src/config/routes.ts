@@ -68,7 +68,7 @@ function routesFactory(endpoint: string) {
   return {
     list: `${endpoint}`,
     create: `${endpoint}/create`,
-    edit: (slug: string) => `${endpoint}/${slug}/edit`,
-    details: (slug: string) => `${endpoint}/${slug}`,
+    edit: (id: string) => `${endpoint}/${id}/edit`,
+    details: (id: string) => `${endpoint}/${id}`,
   }
 }
