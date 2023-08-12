@@ -8,6 +8,7 @@ import { RootState } from "./store"
 import { clearToken } from "./features/auth/authSlice"
 import { redirect } from "next/navigation"
 import {
+  ATTRIBUTES_TAG,
   CATEGORY_TAG,
   PRODUCT_TAG,
   PRODUCT_TAG_NAME_TAG,
@@ -58,6 +59,7 @@ export const apiSlice = createApi({
     CATEGORY_TAG,
     SUB_CATEGORY_TAG,
     SHIPPING_TAG,
+    ATTRIBUTES_TAG,
   ],
   endpoints: (builder) => ({}),
 })

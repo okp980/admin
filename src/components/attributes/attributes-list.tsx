@@ -5,10 +5,10 @@ import ActionButtons from "../common/action-buttons"
 import { MODAL_VIEW } from "@/utils/enums"
 import useModal from "@/hooks/useModal"
 import { Table } from "../ui/table/table"
-import { AttributeResult } from "@/utils/types"
+import { Attribute } from "@/utils/types"
 
 export type IProps = {
-  attributes: AttributeResult[] | undefined
+  attributes: Attribute[] | undefined
 }
 const AttributeList = ({ attributes }: IProps) => {
   const { handleOpenModal } = useModal()
@@ -48,8 +48,8 @@ const AttributeList = ({ attributes }: IProps) => {
         <ActionButtons
           onDelete={() =>
             handleOpenModal({
-              view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
+              view: MODAL_VIEW.DELETE_ATTRIBUTE,
+              modalPayload: { id },
             })
           }
           href={Routes.attribute.edit(id)}

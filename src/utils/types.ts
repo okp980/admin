@@ -49,16 +49,16 @@ export interface Analytics {
   totalYearSaleByMonth: { total: number; month: string }[]
 }
 
-export interface AttributeValueResult {
-  id: string
+export interface AttributeValue {
+  id?: string
   value: string
   meta: string
 }
 
-export interface AttributeResult {
-  id: string
+export interface Attribute {
+  id?: string
   name: string
-  values: AttributeValueResult[]
+  values: AttributeValue[]
 }
 
 export interface CategoryResult {
@@ -196,8 +196,7 @@ export interface ErrorResponse {
   status: number
 }
 
-export interface AttributeResultResponse
-  extends ResponseInterface<AttributeResult[]> {}
+export interface AttributeResponse extends ResponseInterface<Attribute> {}
 
 export interface CategoryResultResponse
   extends ResponseInterface<CategoryResult> {}
@@ -221,6 +220,7 @@ export interface PaginatedOrderResult extends PaginatedResponse<OrderResult> {}
 export interface PaginatedUserResult extends PaginatedResponse<UserResult> {}
 export interface PaginatedProductResult
   extends PaginatedResponse<ProductResult> {}
+export interface PaginatedAttribute extends PaginatedResponse<Attribute> {}
 export interface PaginatedTagResponse extends PaginatedResponse<TagResult> {}
 export interface PaginatedSubCategoryResponse
   extends PaginatedResponse<SubCategoryResult> {}

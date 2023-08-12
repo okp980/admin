@@ -8,6 +8,7 @@ import TagDeleteView from "@/components/tags/tag-delete-view"
 import CategoryDeleteView from "@/components/categories/category-delete-view"
 import SubCategoryDeleteView from "@/components/sub_categories/subcategory-delete-view"
 import ShippingDeleteView from "@/components/shipping/shipping-delete-view"
+import AttributeDeleteView from "@/components/attributes/attributes-delete-view"
 // const ProductDeleteView = dynamic(
 //   () => import("@/components/ui/modal/modal-manager")
 // )
@@ -26,6 +27,10 @@ const renderModal = (view: MODAL_VIEW | null) => {
       return <SubCategoryDeleteView />
     case MODAL_VIEW.DELETE_SHIPPING:
       return <ShippingDeleteView />
+    case MODAL_VIEW.DELETE_SHIPPING:
+      return <ShippingDeleteView />
+    case MODAL_VIEW.DELETE_ATTRIBUTE:
+      return <AttributeDeleteView />
     default:
       return null
   }
