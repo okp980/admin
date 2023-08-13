@@ -1,9 +1,17 @@
 export enum OrderStatus {
   ORDER_PROCESSING = "order-processing",
+  ORDER_PENDING = "order-pending",
+  ORDER_COMPLETED = "order-completed",
+  ORDER_CANCELLED = "order-cancelled",
+  ORDER_REFUNDED = "order-refunded",
+  ORDER_FAILED = "order-failed",
+  ORDER_AT_LOCAL_FACILITY = "order-at-local-facility",
+  ORDER_OUT_FOR_DELIVERY = "order-out-for-delivery",
 }
 
 // Tag Type
 export type TagType = { id?: string; name: string; category: string }
+export type OrderType = { id?: string; status: OrderStatus }
 export type CategoryType = { id?: string; name: string; image?: Blob | string }
 export type SubCategoryType = {
   id?: string
@@ -86,10 +94,10 @@ export interface TagResult {
 }
 export interface OrderResult {
   _id: string
-  user: string
-  items: string[]
+  user: UserResult
+  items: ProductResult[]
   totalAmount: number
-  shippingAddress: ShippingAddress[]
+  shippingAddress: ShippingAddress
   shippingMethod: ShippingMethod
   status: string
   refund: boolean
@@ -198,6 +206,7 @@ export interface ErrorResponse {
 
 export interface AttributeResponse extends ResponseInterface<Attribute> {}
 
+export interface OrderResultResponse extends ResponseInterface<OrderResult> {}
 export interface CategoryResultResponse
   extends ResponseInterface<CategoryResult> {}
 export interface SubCategoryResultResponse

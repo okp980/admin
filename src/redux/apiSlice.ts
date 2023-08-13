@@ -10,6 +10,7 @@ import { redirect } from "next/navigation"
 import {
   ATTRIBUTES_TAG,
   CATEGORY_TAG,
+  ORDERS_TAG,
   PRODUCT_TAG,
   PRODUCT_TAG_NAME_TAG,
   SHIPPING_TAG,
@@ -60,6 +61,7 @@ export const apiSlice = createApi({
     SUB_CATEGORY_TAG,
     SHIPPING_TAG,
     ATTRIBUTES_TAG,
+    ORDERS_TAG,
   ],
   endpoints: (builder) => ({}),
 })

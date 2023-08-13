@@ -2,16 +2,18 @@ import { ErrorMessage, Field, FieldHookConfig, useField } from "formik"
 import React from "react"
 import Select, { SelectProps } from "../ui/select/select"
 
-type Props = SelectProps & { label: string }
+type Props = SelectProps & { label?: string }
 export type Ref = any
 const SelectField = React.forwardRef<Ref, Props>(
   ({ label, ...props }: Props, ref) => {
     return (
       <>
         <div className="mb-5">
-          <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
-            {label}
-          </label>
+          {label && (
+            <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+              {label}
+            </label>
+          )}
           <Field
             innerRef={ref}
             component={Select}

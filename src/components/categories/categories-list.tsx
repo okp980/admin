@@ -5,7 +5,7 @@ import ActionButtons from "../common/action-buttons"
 import { MODAL_VIEW } from "@/utils/enums"
 import useModal from "@/hooks/useModal"
 import { Table } from "../ui/table/table"
-import { AttributeResult, CategoryResult, PaginatedInfo } from "@/utils/types"
+import { CategoryResult, PaginatedInfo } from "@/utils/types"
 import Image from "next/image"
 import Pagination from "../ui/pagination/pagination"
 
