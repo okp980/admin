@@ -21,6 +21,7 @@ type Props = {
   formAction?: "create" | "update"
   product?: ProductResult
   handleGetSubCategories: (params: any) => Promise<void>
+  handleGetTags: (params: any) => Promise<void>
   onHandleSubmit: (value: any) => Promise<void>
   loading: boolean
 }
@@ -62,6 +63,7 @@ const ProductForm = ({
   sub_categories,
   isSubCategoriesLoading,
   handleGetSubCategories,
+  handleGetTags,
   onHandleSubmit,
   tags,
 
@@ -156,6 +158,7 @@ const ProductForm = ({
                   if (category) {
                     setFieldValue("category", category.id)
                     handleGetSubCategories({ category: category.id })
+                    handleGetTags({ category: category.id })
                   }
                 }}
               />

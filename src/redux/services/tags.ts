@@ -66,6 +66,7 @@ const tagApi = apiSlice.injectEndpoints({
 
 export const {
   useGetTagsQuery,
+  useLazyGetTagsQuery,
   useCreateTagMutation,
   useEditTagMutation,
   useDeleteTagMutation,

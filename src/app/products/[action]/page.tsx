@@ -13,7 +13,7 @@ import {
   useGetSubCategoriesQuery,
   useLazyGetSubCategoriesQuery,
 } from "@/redux/services/sub-categories"
-import { useGetTagsQuery } from "@/redux/services/tags"
+import { useGetTagsQuery, useLazyGetTagsQuery } from "@/redux/services/tags"
 import React from "react"
 import { toast } from "react-toastify"
 
@@ -37,12 +37,15 @@ const ProductFormPage = ({ params }: Props) => {
     isError: isErrorCategories,
     error: errorCategories,
   } = useGetCategoriesQuery()
-  const {
-    data: tags,
-    isLoading: isLoadingTags,
-    isError: isErrorTag,
-    error: errorTag,
-  } = useGetTagsQuery()
+  const [
+    getTags,
+    {
+      data: tags,
+      isLoading: isLoadingTags,
+      isError: isErrorTag,
+      error: errorTag,
+    },
+  ] = useLazyGetTagsQuery()
 
   const [createProduct, { isLoading: isLoadingCreateProduct }] =
     useCreateProductMutation()
@@ -86,6 +89,8 @@ const ProductFormPage = ({ params }: Props) => {
         formAction={params.action}
         // @ts-ignore
         handleGetSubCategories={getSubCategories}
+        // @ts-ignore
+        handleGetTags={getTags}
         sub_categories={sub_categories?.data as any[]}
         isSubCategoriesLoading={isLoadingSubCategories}
         categories={categories?.data as any[]}
