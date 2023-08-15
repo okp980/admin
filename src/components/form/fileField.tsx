@@ -11,7 +11,7 @@ const FileField = ({ label, ...props }: Props) => {
         {label}
       </label>
       <input
-        className="px-4 h-12 flex items-center w-full rounded appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0 bg-gray-100 border border-border-base focus:shadow focus:bg-light focus:border-accent"
+        className="p-3 h-12 flex items-center w-full rounded appearance-none transition duration-300 ease-in-out text-heading text-sm focus:outline-none focus:ring-0 bg-transparent border-none focus:shadow focus:bg-light focus:border-accent"
         {...props}
       />
       <ErrorMessage

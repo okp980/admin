@@ -1,9 +1,38 @@
-import { ErrorMessage, Field, FieldHookConfig, useField } from "formik"
+import {
+  ErrorMessage,
+  Field,
+  FieldHookConfig,
+  FieldProps,
+  FormikValues,
+  useField,
+} from "formik"
 import React from "react"
 import Select, { SelectProps } from "../ui/select/select"
 
 type Props = SelectProps & { label?: string }
 export type Ref = any
+
+function SelectFormik(props: SelectProps & FieldProps) {
+  const [field, state, { setValue, setTouched }] = useField(props.field.name)
+
+  // value is an array now
+  const onChange = (value: any) => {
+    setValue(value)
+  }
+
+  // use value to make this a  controlled component
+  // now when the form receives a value for 'campfeatures' it will populate as expected
+  return (
+    <Select
+      // value={state?.value}
+      onChange={onChange}
+      // @ts-ignore
+      onBlur={setTouched}
+      {...props}
+    />
+  )
+}
+
 const SelectField = React.forwardRef<Ref, Props>(
   ({ label, ...props }: Props, ref) => {
     return (
@@ -16,7 +45,7 @@ const SelectField = React.forwardRef<Ref, Props>(
           )}
           <Field
             innerRef={ref}
-            component={Select}
+            component={SelectFormik}
             {...props}
             className="mb-2"
           />

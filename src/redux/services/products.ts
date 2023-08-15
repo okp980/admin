@@ -3,6 +3,7 @@ import { apiSlice } from "../apiSlice"
 import {
   PaginatedProductResult,
   PaginationParams,
+  ProductResponse,
   ProductResult,
 } from "@/utils/types"
 import { PRODUCT_TAG } from "@/utils/tagsTypes"
@@ -26,7 +27,34 @@ const ordersApi = apiSlice.injectEndpoints({
             ]
           : [PRODUCT_TAG],
     }),
-    deleteProduct: build.mutation<Partial<ProductResult>, string>({
+    getSingleProduct: build.query<ProductResponse, string>({
+      query: (id) => ({
+        url: `${API_ENPOINTS.products}/${id}`,
+      }),
+      providesTags: (result, error, arg) => [{ type: PRODUCT_TAG, id: arg }],
+    }),
+    createProduct: build.mutation<ProductResponse, FormData>({
+      query: (body) => ({
+        url: API_ENPOINTS.products,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [PRODUCT_TAG],
+    }),
+    updateProduct: build.mutation<
+      ProductResponse,
+      { body: FormData; id: string }
+    >({
+      query: ({ id, body }) => ({
+        url: `${API_ENPOINTS.products}/${id}`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: PRODUCT_TAG, id: arg.id },
+      ],
+    }),
+    deleteProduct: build.mutation<Partial<ProductResponse>, string>({
       query: (id: string) => ({
         url: `${API_ENPOINTS.products}/${id}`,
         method: "DELETE",
@@ -36,4 +64,10 @@ const ordersApi = apiSlice.injectEndpoints({
   }),
 })
 
-export const { useGetProductsQuery, useDeleteProductMutation } = ordersApi
+export const {
+  useGetProductsQuery,
+  useGetSingleProductQuery,
+  useCreateProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+} = ordersApi

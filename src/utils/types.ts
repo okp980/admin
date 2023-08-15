@@ -205,6 +205,7 @@ export interface ErrorResponse {
 }
 
 export interface AttributeResponse extends ResponseInterface<Attribute> {}
+export interface ProductResponse extends ResponseInterface<ProductResult> {}
 
 export interface OrderResultResponse extends ResponseInterface<OrderResult> {}
 export interface CategoryResultResponse

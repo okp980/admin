@@ -77,6 +77,7 @@ const subCategoryApi = apiSlice.injectEndpoints({
 
 export const {
   useGetSubCategoriesQuery,
+  useLazyGetSubCategoriesQuery,
   useGetSingleSubCategoryQuery,
   useCreateSubCategoryMutation,
   useUpdateSubCategoryMutation,

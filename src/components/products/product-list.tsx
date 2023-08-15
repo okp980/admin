@@ -233,7 +233,7 @@ const ProductList = ({
               modalPayload: { id },
             })
           }
-          href={Routes.products.edit(id)}
+          href={`/products/update/${id}`}
         />
       ),
     },

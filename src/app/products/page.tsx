@@ -9,6 +9,8 @@ import CategoryTypeFilter from "@/components/products/category-type-filter"
 import { useGetProductsQuery } from "@/redux/services/products"
 import Loader from "@/components/ui/loader/loader"
 import ErrorMessage from "@/components/ui/error-message"
+import Button from "@/components/ui/button/button"
+import { useRouter } from "next/navigation"
 
 type Props = {}
 
@@ -17,6 +19,7 @@ const ProductsPage = (props: Props) => {
   const [page, setPage] = useState(1)
   const [category, setCategory] = useState("")
   const [subCategory, setSubCategory] = useState("")
+  const router = useRouter()
   const {
     data: products,
     isLoading,
@@ -66,6 +69,12 @@ const ProductsPage = (props: Props) => {
               <BsArrowDown className="ms-2" />
             )}
           </button>
+          <Button
+            className="mt-5 flex items-center whitespace-nowrap text-base font-semibold text-accent md:mt-0 md:ms-5"
+            onClick={() => router.push("/products/create")}
+          >
+            Create Product
+          </Button>
         </div>
         <div
           className={cn("flex w-full transition", {
