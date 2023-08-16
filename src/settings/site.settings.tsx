@@ -8,14 +8,14 @@ import { FaUsersCog, FaShippingFast } from "react-icons/fa"
 
 export const siteSettings = {
   authorizedLinks: [
-    {
-      href: Routes.profileUpdate,
-      label: "Profile",
-    },
-    {
-      href: Routes.logout,
-      label: "Logout",
-    },
+    // {
+    //   href: Routes.profileUpdate,
+    //   label: "Profile",
+    // },
+    // {
+    //   href: Routes.logout,
+    //   label: "Logout",
+    // },
   ],
   sideLinks: [
     {

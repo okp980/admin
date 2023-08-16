@@ -1,3 +1,4 @@
+"use client"
 import {
   BaseQueryApi,
   BaseQueryFn,
@@ -16,6 +17,7 @@ import {
   SHIPPING_TAG,
   SUB_CATEGORY_TAG,
 } from "@/utils/tagsTypes"
+import Router from "next/router"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
@@ -37,14 +39,14 @@ const baseQuery = fetchBaseQuery({
 })
 
 const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
-  let result
-
-  result = await baseQuery(args, api, extraOptions)
+  const result = await baseQuery(args, api, extraOptions)
 
   // check for 401 error
   if (result.error?.status === 401) {
+    console.log("inside")
     api.dispatch(clearToken())
-    redirect("/")
+
+    history.replaceState("", "", "/")
   }
 
   return result

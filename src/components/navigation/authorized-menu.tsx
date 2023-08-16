@@ -4,9 +4,18 @@ import { Menu, Transition } from "@headlessui/react"
 import { siteSettings } from "@/settings/site.settings"
 import { HiUserCircle } from "react-icons/hi"
 import Link from "next/link"
+import useAuth from "@/hooks/useAuth"
+import { useRouter } from "next/navigation"
 
 export default function AuthorizedMenu() {
-  // Again, we're using framer-motion for the transition effect
+  const { handleClearToken } = useAuth()
+  const router = useRouter()
+
+  const handleLogout = () => {
+    handleClearToken()
+    router.replace("/")
+  }
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <Menu.Button className="flex items-center focus:outline-none">
@@ -53,6 +62,16 @@ export default function AuthorizedMenu() {
               )}
             </Menu.Item>
           ))}
+          <Menu.Item key={"customer@demo.com"}>
+            <li
+              className="cursor-pointer border-b border-gray-100 last:border-0"
+              onClick={handleLogout}
+            >
+              <span className="block px-4 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent">
+                Logout
+              </span>
+            </li>
+          </Menu.Item>
         </Menu.Items>
       </Transition>
     </Menu>

@@ -19,7 +19,7 @@ const loginFormSchema = yup.object().shape({
   password: yup.string().required("Password is required"),
 })
 
-const initialValues = { email: "", password: "" }
+const initialValues = { email: "test@mail.com", password: "123456" }
 
 const LoginForm = () => {
   const [loading, setLoading] = useState(false)
