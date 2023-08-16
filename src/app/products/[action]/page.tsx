@@ -14,6 +14,7 @@ import {
   useLazyGetSubCategoriesQuery,
 } from "@/redux/services/sub-categories"
 import { useGetTagsQuery, useLazyGetTagsQuery } from "@/redux/services/tags"
+import { useRouter } from "next/navigation"
 import React from "react"
 import { toast } from "react-toastify"
 
@@ -50,8 +51,9 @@ const ProductFormPage = ({ params }: Props) => {
   const [createProduct, { isLoading: isLoadingCreateProduct }] =
     useCreateProductMutation()
 
+  const router = useRouter()
+
   const handeleCreateProduct = async (values: typeof productInitialValues) => {
-    console.log(values)
     const tags = values.tags.map((tag: any) => tag.id)
 
     try {
@@ -61,7 +63,7 @@ const ProductFormPage = ({ params }: Props) => {
       formData.append("description", values.description)
       formData.append("price", values.price)
       formData.append("image", values.image as any)
-      formData.append("gallery", JSON.stringify(values.gallery))
+
       formData.append("category", values.category)
       formData.append("sub_category", values.sub_category)
       formData.append("quantity", values.quantity)
@@ -71,10 +73,17 @@ const ProductFormPage = ({ params }: Props) => {
       formData.append("brand", values.brand)
       formData.append("weight", values.weight)
 
+      for (const value of values.gallery) {
+        formData.append("gallery", value)
+      }
+
       await createProduct(formData).unwrap()
+      router.push("/products")
       toast.success("Product created successfully")
-    } catch (error) {
-      toast.error("Error Ocurred")
+    } catch (error: any) {
+      console.warn(error)
+
+      toast.error(error?.data?.error)
     }
   }
 

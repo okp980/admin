@@ -12,6 +12,9 @@ import { Table } from "../ui/table/table"
 import useModal from "@/hooks/useModal"
 import { MODAL_VIEW } from "@/utils/enums"
 import ActionButtons from "../common/action-buttons"
+import Badge from "../ui/badge/badge"
+import cn from "classnames"
+import { getPrice } from "@/utils/helpers"
 
 export type IProps = {
   products: ProductResult[] | undefined
@@ -57,7 +60,7 @@ const ProductList = ({
 
   let columns = [
     {
-      title: "image",
+      title: "Image",
       dataIndex: "image",
       key: "image",
 
@@ -82,6 +85,7 @@ const ProductList = ({
       key: "name",
       width: 300,
       ellipsis: true,
+      align: "center",
       // onHeaderCell: () => onHeaderClick("name"),
     },
     {
@@ -95,17 +99,7 @@ const ProductList = ({
         <span className="truncate whitespace-nowrap">{category?.name}</span>
       ),
     },
-    // {
-    //   title: t("table:table-item-shop"),
-    //   dataIndex: "shop",
-    //   key: "shop",
-    //   width: 120,
-    //   align: "center",
-    //   ellipsis: true,
-    //   render: (shop: Shop) => (
-    //     <span className="truncate whitespace-nowrap">{shop?.name}</span>
-    //   ),
-    // },
+
     {
       title: "Sub Category",
       dataIndex: "sub_category",
@@ -133,29 +127,22 @@ const ProductList = ({
       align: "center",
       width: 120,
       // onHeaderCell: () => onHeaderClick("price"),
-      // render: function Render(value: number, record: Product) {
-      //   const { price: max_price } = usePrice({
-      //     amount: record?.max_price as number,
-      //   })
-      //   const { price: min_price } = usePrice({
-      //     amount: record?.min_price as number,
-      //   })
+      render: function Render(value: number, record: ProductResult) {
+        const price = getPrice(record.price)
+        const max_price = getPrice(record?.max_price)
+        const min_price = getPrice(record?.min_price)
 
-      //   const { price } = usePrice({
-      //     amount: value,
-      //   })
+        const renderPrice =
+          record?.product_type === "variable"
+            ? `${min_price} - ${max_price}`
+            : price
 
-      //   const renderPrice =
-      //     record?.product_type === ProductType.Variable
-      //       ? `${min_price} - ${max_price}`
-      //       : price
-
-      //   return (
-      //     <span className="whitespace-nowrap" title={renderPrice}>
-      //       {renderPrice}
-      //     </span>
-      //   )
-      // },
+        return (
+          <span className="whitespace-nowrap" title={renderPrice}>
+            {renderPrice}
+          </span>
+        )
+      },
     },
     {
       // title: (
@@ -175,50 +162,35 @@ const ProductList = ({
       align: "center",
       width: 150,
       // onHeaderCell: () => onHeaderClick("quantity"),
-      // render: (quantity: number) => {
-      //   if (quantity < 2) {
-      //     return (
-      //       <Badge
-      //         text={t("common:text-out-of-stock")}
-      //         color="bg-red-500 text-white"
-      //       />
-      //     )
-      //   }
-      //   return <span>{quantity}</span>
-      // },
+      render: function Render(quantity: number, record: ProductResult) {
+        const renderQuantity =
+          record?.product_type === "variable"
+            ? record?.total_quantity
+            : quantity
+
+        return (
+          <span className="whitespace-nowrap" title={renderQuantity.toString()}>
+            {renderQuantity.toString()}
+          </span>
+        )
+      },
     },
-    // {
-    //   title: t("table:table-item-status"),
-    //   dataIndex: "status",
-    //   key: "status",
-    //   align: "left",
-    //   width: 180,
-    //   render: (status: string, record: any) => (
-    //     <div
-    //       className={`flex justify-start ${
-    //         record?.quantity > 0 && record?.quantity < 10
-    //           ? "flex-col items-baseline space-y-3 3xl:flex-row 3xl:space-x-3 3xl:space-y-0 rtl:3xl:space-x-reverse"
-    //           : "items-center space-x-3 rtl:space-x-reverse"
-    //       }`}
-    //     >
-    //       <Badge
-    //         text={status}
-    //         color={
-    //           status.toLocaleLowerCase() === "draft"
-    //             ? "bg-yellow-400"
-    //             : "bg-accent"
-    //         }
-    //       />
-    //       {record?.quantity > 0 && record?.quantity < 10 && (
-    //         <Badge
-    //           text={t("common:text-low-quantity")}
-    //           color="bg-red-600"
-    //           animate={true}
-    //         />
-    //       )}
-    //     </div>
-    //   ),
-    // },
+    {
+      title: "Status",
+      dataIndex: "inStock",
+      key: "inStock",
+      align: "center",
+      width: 180,
+      render: (inStock: boolean, record: any) => (
+        <div>
+          <Badge
+            text={`${inStock ? "in" : "out-of"}-stock `}
+            color={cn({ "bg-red-600": !inStock, "bg-green-600": inStock })}
+            animate={inStock ? false : true}
+          />
+        </div>
+      ),
+    },
     {
       title: "Actions",
       dataIndex: "id",

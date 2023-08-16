@@ -138,7 +138,7 @@ const ProductForm = ({
 
           <div className="my-5 flex flex-wrap border-b border-dashed border-border-base pb-8 sm:my-8">
             <Description
-              title={"Group & Categories"}
+              title={"Categories & Sub Categories"}
               details={"Select product category and sub categories."}
               className="w-full px-0 pb-5 sm:w-4/12 sm:py-8 sm:pe-4 md:w-1/3 md:pe-5"
             />

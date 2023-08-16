@@ -161,6 +161,10 @@ export interface ProductResult {
   gallery: []
   sub_category: SubCategoryResult
   quantity: number
+  product_type: string
+  max_price: number
+  min_price: number
+  total_quantity: number
   tags: []
   meta: {
     weight: {
