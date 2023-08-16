@@ -60,5 +60,6 @@ const SelectField = React.forwardRef<Ref, Props>(
     )
   }
 )
+SelectField.displayName = "MySelectField"
 
 export default SelectField
