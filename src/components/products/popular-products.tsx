@@ -14,27 +14,30 @@ const PopularProducts = ({ title, products }: Props) => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      align: "center",
+      align: "left",
       width: 200,
+      render: (name: string) => (
+        <span className="whitespace-nowrap capitalize">{name}</span>
+      ),
     },
     {
       title: "Category",
       dataIndex: "category",
       key: "category",
-      align: "center",
+      align: "left",
       width: 150,
       render: (category: CategoryResult) => (
-        <span className="whitespace-nowrap">{category?.name}</span>
+        <span className="whitespace-nowrap capitalize">{category?.name}</span>
       ),
     },
     {
       title: "Sub Category",
       dataIndex: "sub_category",
       key: "category",
-      align: "center",
+      align: "left",
       width: 150,
       render: (category: CategoryResult) => (
-        <span className="whitespace-nowrap">{category?.name}</span>
+        <span className="whitespace-nowrap capitalize">{category?.name}</span>
       ),
     },
     {

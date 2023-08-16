@@ -7,6 +7,9 @@ import { differenceInDays, formatDistance, parseISO } from "date-fns"
 import Link from "next/link"
 import { AiFillEye } from "react-icons/ai"
 import Pagination from "../ui/pagination/pagination"
+import { getPrice } from "@/utils/helpers"
+import Badge from "../ui/badge/badge"
+import StatusColor from "../order/status-color"
 
 export type IProps = {
   orders: OrderResult[] | undefined
@@ -29,18 +32,30 @@ const OrdersList = ({ orders, paginatorInfo, onPagination }: IProps) => {
       dataIndex: "shippingMethod",
       key: "shippingMethod",
       align: "center",
-      render: (shippingMethod: any) => (
-        <span className="whitespace-nowrap">{shippingMethod?.charge}</span>
-      ),
+      render: function Render(shippingMethod: any) {
+        const price = getPrice(shippingMethod?.charge)
+
+        return (
+          <span className="whitespace-nowrap" title={price}>
+            {price}
+          </span>
+        )
+      },
     },
     {
       title: "Total",
       dataIndex: "totalAmount",
       key: "totalAmount",
       align: "center",
-      //   render: (shippingMethod: any) => (
-      //     <span className="whitespace-nowrap">{shippingMethod.charge}</span>
-      //   ),
+      render: function Render(value: number) {
+        const price = getPrice(value)
+
+        return (
+          <span className="whitespace-nowrap" title={price}>
+            {price}
+          </span>
+        )
+      },
     },
     {
       title: "Order Date",
@@ -61,18 +76,8 @@ const OrdersList = ({ orders, paginatorInfo, onPagination }: IProps) => {
       key: "status",
       align: "center",
       render: (status: any) => (
-        <span className="whitespace-nowrap">{status}</span>
-      ),
-    },
-    {
-      title: "Shipping Address",
-      dataIndex: "shippingAddress",
-      key: "shippingAddress",
-      align: "center",
-      render: (shippingAddress: any) => (
-        <span className="whitespace-nowrap">
-          {shippingAddress[0].full_address}
-        </span>
+        // <span className="whitespace-nowrap">{status}</span>
+        <Badge text={status} color={StatusColor(status)} />
       ),
     },
 

@@ -23,7 +23,9 @@ const TagsList = ({ tags, paginatorInfo, onPagination }: IProps) => {
       dataIndex: "name",
       key: "name",
       align: "left",
-      render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
+      render: (name: any) => (
+        <span className="whitespace-nowrap capitalize">{name}</span>
+      ),
     },
     {
       title: "Category",
@@ -31,7 +33,7 @@ const TagsList = ({ tags, paginatorInfo, onPagination }: IProps) => {
       key: "category",
       align: "left",
       render: (category: any) => (
-        <span className="whitespace-nowrap">{category.name}</span>
+        <span className="whitespace-nowrap capitalize">{category.name}</span>
       ),
     },
 
@@ -39,7 +41,7 @@ const TagsList = ({ tags, paginatorInfo, onPagination }: IProps) => {
       title: "Actions",
       dataIndex: "id",
       key: "actions",
-      align: "right",
+      align: "center",
       render: (id: string) => (
         <ActionButtons
           onDelete={() =>

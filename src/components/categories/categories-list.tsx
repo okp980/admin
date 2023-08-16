@@ -24,15 +24,6 @@ const CategoriesList = ({
 
   let columns = [
     {
-      title: "Name",
-
-      dataIndex: "name",
-      key: "name",
-      align: "left",
-      width: 250,
-      render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
-    },
-    {
       title: "Image",
       dataIndex: "image",
       key: "values",
@@ -50,6 +41,18 @@ const CategoriesList = ({
         </div>
       ),
     },
+    {
+      title: "Name",
+
+      dataIndex: "name",
+      key: "name",
+      align: "left",
+      width: 250,
+      render: (name: any) => (
+        <span className="whitespace-nowrap capitalize">{name}</span>
+      ),
+    },
+
     {
       title: "Actions",
       dataIndex: "id",

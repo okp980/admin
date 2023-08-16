@@ -15,6 +15,7 @@ import ActionButtons from "../common/action-buttons"
 import Badge from "../ui/badge/badge"
 import cn from "classnames"
 import { getPrice } from "@/utils/helpers"
+import { siteSettings } from "@/settings/site.settings"
 
 export type IProps = {
   products: ProductResult[] | undefined
@@ -69,7 +70,7 @@ const ProductList = ({
         <div className="relative flex h-[42px] w-[42px] items-center">
           <Image
             // src={image?.thumbnail ?? siteSettings.product.placeholder}
-            src={`http://localhost:4000/uploads/${image}`}
+            src={image || siteSettings.product.placeholder}
             alt={name}
             fill
             sizes="(max-width: 768px) 100vw"
@@ -85,18 +86,23 @@ const ProductList = ({
       key: "name",
       width: 300,
       ellipsis: true,
-      align: "center",
+      align: "left",
       // onHeaderCell: () => onHeaderClick("name"),
+      render: (name: string) => (
+        <span className=" whitespace-nowrap capitalize">{name}</span>
+      ),
     },
     {
       title: "Category",
       dataIndex: "category",
       key: "category",
       width: 200,
-      align: "center",
+      align: "left",
       ellipsis: true,
       render: (category: CategoryResult) => (
-        <span className="truncate whitespace-nowrap">{category?.name}</span>
+        <span className="truncate whitespace-nowrap capitalize">
+          {category?.name}
+        </span>
       ),
     },
 
@@ -105,9 +111,11 @@ const ProductList = ({
       dataIndex: "sub_category",
       key: "sub_category",
       width: 200,
-      align: "center",
+      align: "left",
       render: (sub_category: SubCategoryResult) => (
-        <span className="truncate whitespace-nowrap">{sub_category.name}</span>
+        <span className="truncate whitespace-nowrap capitalize">
+          {sub_category.name}
+        </span>
       ),
     },
     {

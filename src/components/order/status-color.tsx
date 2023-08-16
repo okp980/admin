@@ -1,4 +1,6 @@
 const StatusColor = (status: string) => {
+  console.log(status)
+
   let bg_class = ""
   if (
     status?.toLowerCase() === "order-pending" ||
@@ -14,7 +16,7 @@ const StatusColor = (status: string) => {
     status?.toLowerCase() === "order-completed" ||
     status?.toLowerCase() === "payment-success"
   ) {
-    bg_class = "bg-accent"
+    bg_class = "bg-[#10B981]"
   } else if (
     status?.toLowerCase() === "order-cancelled" ||
     status?.toLowerCase() === "payment-reversal"

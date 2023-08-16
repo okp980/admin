@@ -4,6 +4,7 @@ import Badge from "../ui/badge/badge"
 import StatusColor from "./status-color"
 import { Table } from "../ui/table/table"
 import { differenceInDays, parseISO } from "date-fns"
+import { getPrice } from "@/utils/helpers"
 
 type Props = {
   orders: OrderResult[]
@@ -25,6 +26,15 @@ const RecentOrders = ({ title, orders }: Props) => {
       key: "totalAmount",
       align: "center",
       width: 150,
+      render: function Render(value: number, record: OrderResult) {
+        const price = getPrice(record.totalAmount)
+
+        return (
+          <span className="whitespace-nowrap" title={price}>
+            {price}
+          </span>
+        )
+      },
     },
     {
       title: "Order Date",

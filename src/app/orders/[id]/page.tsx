@@ -15,12 +15,16 @@ import { Table } from "../../../components/ui/table/table"
 import Loader from "@/components/ui/loader/loader"
 import ErrorMessage from "@/components/ui/error-message"
 import { toast } from "react-toastify"
+import { useRouter } from "next/navigation"
+import { getPrice } from "@/utils/helpers"
+import { siteSettings } from "@/settings/site.settings"
 
 type Props = {
   params: { id: string }
 }
 
 const OrderDetailPage = ({ params }: Props) => {
+  const router = useRouter()
   const {
     data: order,
     isLoading: isLoadingOrder,
@@ -31,18 +35,24 @@ const OrderDetailPage = ({ params }: Props) => {
     updateStatus,
     { isLoading: isLoadingStatus, isError: isErrorStatus, error: errorStatus },
   ] = useUpdateOrderStatusMutation()
+
+  // console.log(
+  //   "order?.data?.shippingAddress?.full_address",
+  //   (order?.data?.shippingAddress as unknown as any[])[0]?.full_address
+  // )
+
   const columns = [
     {
-      title: "image",
-      dataIndex: "image",
+      title: "Image",
+      dataIndex: "product",
       key: "image",
 
       width: 70,
-      render: (image: any, { name }: { name: string }) => (
+      render: (prod: any, { name }: { name: string }) => (
         <div className="relative flex h-[42px] w-[42px] items-center">
           <Image
-            // src={image?.thumbnail ?? siteSettings.product.placeholder}
-            src={`http://localhost:4000/uploads/${image}`}
+            src={prod?.image || siteSettings.product.placeholder}
+            // src={`http://localhost:4000/uploads/${image}`}
             alt={name}
             fill
             sizes="(max-width: 768px) 100vw"
@@ -54,12 +64,12 @@ const OrderDetailPage = ({ params }: Props) => {
 
     {
       title: "Products",
-      dataIndex: "items",
-      key: "items",
+      dataIndex: "product",
+      key: "product",
       align: "left",
-      render: (name: string, item: any) => (
+      render: (prod: any, item: any) => (
         <div>
-          <span>{name}</span>
+          <span className="capitalize">{prod?.name}</span>
           <span className="mx-2">x</span>
           <span className="font-semibold text-heading">{item?.quantity}</span>
         </div>
@@ -70,18 +80,17 @@ const OrderDetailPage = ({ params }: Props) => {
       dataIndex: "price",
       key: "price",
       align: "right",
-      //  render: function Render(_: any, item: any) {
-      //    const { price } = usePrice({
-      //      amount: parseFloat(item.pivot.subtotal),
-      //    })
-      //    return <span>{price}</span>
-      //  },
+      render: function Render(amount: any) {
+        const price = getPrice(amount)
+        return <span>{price}</span>
+      },
     },
   ]
   const handleUpdateStatus = async (values: any) => {
     try {
       await updateStatus({ ...values, id: params.id }).unwrap()
       toast.success("Order Updated Successfully")
+      router.push("/orders")
     } catch (error: any) {
       toast.error(error?.data.error)
     }
@@ -133,7 +142,7 @@ const OrderDetailPage = ({ params }: Props) => {
           )}
       </div>
       <div className="my-5 flex items-center justify-center lg:my-10">
-        <p>form steeper for order status</p>
+        {/* <p>form stepper for order status</p> */}
       </div>
       <div className="mb-10">
         {order ? (
@@ -151,27 +160,29 @@ const OrderDetailPage = ({ params }: Props) => {
         <div className="flex w-full flex-col space-y-2 border-t-4 border-double border-border-200 px-4 py-4 ms-auto sm:w-1/2 md:w-1/3">
           <div className="flex items-center justify-between text-sm text-body">
             <span>Sub total</span>
-            <span>{order?.data?.totalAmount}</span>
+            <span>{getPrice(order?.data?.totalAmount as number) ?? 0}</span>
           </div>
           <div className="flex items-center justify-between text-sm text-body">
             <span>Tax</span>
-            <span>2.00</span>
+            <span>{getPrice(2.0)}</span>
           </div>
           <div className="flex items-center justify-between text-sm text-body">
             <span>Delivery fee</span>
-            <span>{order?.data?.shippingMethod?.charge}</span>
+            <span>
+              {getPrice(+order?.data?.shippingMethod?.charge! as number) ?? 0}
+            </span>
           </div>
           <div className="flex items-center justify-between text-sm text-body">
             <span>Discount</span>
-            <span>0.0</span>
+            <span>{getPrice(0.0)}</span>
           </div>
           <div className="flex items-center justify-between text-base font-semibold text-heading">
             <span>Total</span>
-            <span>{order?.data?.totalAmount}</span>
+            <span>{getPrice(order?.data?.totalAmount as number) ?? 0}</span>
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-end my-10">
         {/* <div className="mb-10 w-full sm:mb-0 sm:w-1/2 sm:pe-8">
           <h3 className="mb-3 border-b border-border-200 pb-2 font-semibold text-heading">
             {t("common:billing-address")}
@@ -193,9 +204,14 @@ const OrderDetailPage = ({ params }: Props) => {
 
           <div className="flex flex-col items-start space-y-1 text-sm text-body text-start sm:items-end sm:text-end">
             {/* <span>{order?.data?.user.profile}</span> */}
-            {order?.data?.shippingAddress?.full_address && (
-              <span>{order?.data?.shippingAddress?.full_address}</span>
-            )}
+
+            <span>
+              {
+                (order?.data?.shippingAddress as unknown as any[])[0]
+                  ?.full_address
+              }
+            </span>
+
             {/* {order?.customer_contact && <span>{order?.customer_contact}</span>} */}
           </div>
         </div>

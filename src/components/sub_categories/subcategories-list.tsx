@@ -8,6 +8,7 @@ import { Table } from "../ui/table/table"
 import { PaginatedInfo, SubCategoryResult } from "@/utils/types"
 import Image from "next/image"
 import Pagination from "../ui/pagination/pagination"
+import { siteSettings } from "@/settings/site.settings"
 
 export type IProps = {
   subcategories: SubCategoryResult[] | undefined
@@ -23,12 +24,32 @@ const SubCategoriesList = ({
 
   let columns = [
     {
+      title: "Image",
+      dataIndex: "image",
+      key: "values",
+      align: "left",
+      width: 74,
+      render: (image: any, { name }: { name: string }) => (
+        <div className="relative flex h-[42px] w-[42px] items-center">
+          <Image
+            src={siteSettings.product.placeholder} // change to =>image ?? siteSettings.product.placeholder
+            alt={name}
+            fill
+            sizes="(max-width: 768px) 100vw"
+            className="overflow-hidden rounded object-fill"
+          />
+        </div>
+      ),
+    },
+    {
       title: "Name",
 
       dataIndex: "name",
       key: "name",
       align: "left",
-      render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
+      render: (name: any) => (
+        <span className="whitespace-nowrap capitalize">{name}</span>
+      ),
     },
     {
       title: "Category",
@@ -36,33 +57,15 @@ const SubCategoriesList = ({
       key: "category",
       align: "left",
       render: (category: any) => (
-        <span className="whitespace-nowrap">{category.name}</span>
+        <span className="whitespace-nowrap capitalize">{category.name}</span>
       ),
     },
-    // {
-    //   title: "Image",
-    //   dataIndex: "image",
-    //   key: "values",
-    //   align: "left",
-    //   width: 74,
-    //   render: (image: any, { name }: { name: string }) => (
-    //     <div className="relative flex h-[42px] w-[42px] items-center">
-    //       <Image
-    //         // src={image?.thumbnail ?? siteSettings.product.placeholder}
-    //         src={image}
-    //         alt={name}
-    //         fill
-    //         sizes="(max-width: 768px) 100vw"
-    //         className="overflow-hidden rounded object-fill"
-    //       />
-    //     </div>
-    //   ),
-    // },
+
     {
       title: "Actions",
       dataIndex: "id",
       key: "actions",
-      align: "right",
+      align: "center",
       render: (id: string) => (
         <ActionButtons
           onDelete={() =>
