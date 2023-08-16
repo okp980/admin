@@ -3,6 +3,7 @@ import React from "react"
 import Badge from "../ui/badge/badge"
 import StatusColor from "./status-color"
 import { Table } from "../ui/table/table"
+import { differenceInDays, parseISO } from "date-fns"
 
 type Props = {
   orders: OrderResult[]
@@ -31,6 +32,13 @@ const RecentOrders = ({ title, orders }: Props) => {
       key: "createdAt",
       align: "center",
       width: 150,
+      render: (createdAt: any) => {
+        const date = parseISO(createdAt)
+        const daysAgo = differenceInDays(new Date(), date)
+        return (
+          <span className="whitespace-nowrap">{`${daysAgo} days ago`}</span>
+        )
+      },
     },
     {
       title: "Order Status",

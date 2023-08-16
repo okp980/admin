@@ -106,4 +106,10 @@ export const siteSettings = {
       icon: LuLayoutDashboard,
     },
   ],
+  product: {
+    placeholder: "/product-placeholder.svg",
+  },
+  avatar: {
+    placeholder: "/avatar-placeholder.svg",
+  },
 }

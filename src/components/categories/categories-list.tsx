@@ -8,6 +8,7 @@ import { Table } from "../ui/table/table"
 import { CategoryResult, PaginatedInfo } from "@/utils/types"
 import Image from "next/image"
 import Pagination from "../ui/pagination/pagination"
+import { siteSettings } from "@/settings/site.settings"
 
 export type IProps = {
   categories: CategoryResult[] | undefined
@@ -28,32 +29,33 @@ const CategoriesList = ({
       dataIndex: "name",
       key: "name",
       align: "left",
+      width: 250,
       render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
     },
-    // {
-    //   title: "Image",
-    //   dataIndex: "image",
-    //   key: "values",
-    //   align: "left",
-    //   width: 74,
-    //   render: (image: any, { name }: { name: string }) => (
-    //     <div className="relative flex h-[42px] w-[42px] items-center">
-    //       <Image
-    //         // src={image?.thumbnail ?? siteSettings.product.placeholder}
-    //         src={image}
-    //         alt={name}
-    //         fill
-    //         sizes="(max-width: 768px) 100vw"
-    //         className="overflow-hidden rounded object-fill"
-    //       />
-    //     </div>
-    //   ),
-    // },
+    {
+      title: "Image",
+      dataIndex: "image",
+      key: "values",
+      align: "left",
+      width: 74,
+      render: (image: any, { name }: { name: string }) => (
+        <div className="relative flex h-[42px] w-[42px] items-center">
+          <Image
+            src={siteSettings.product.placeholder} // change to =>image ?? siteSettings.product.placeholder
+            alt={name}
+            fill
+            sizes="(max-width: 768px) 100vw"
+            className="overflow-hidden rounded object-fill"
+          />
+        </div>
+      ),
+    },
     {
       title: "Actions",
       dataIndex: "id",
       key: "actions",
-      align: "right",
+      align: "center",
+      width: 74,
       render: (id: string) => (
         <ActionButtons
           onDelete={() =>
