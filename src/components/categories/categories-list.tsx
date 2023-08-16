@@ -32,7 +32,7 @@ const CategoriesList = ({
       render: (image: any, { name }: { name: string }) => (
         <div className="relative flex h-[42px] w-[42px] items-center">
           <Image
-            src={siteSettings.product.placeholder} // change to =>image ?? siteSettings.product.placeholder
+            src={image ?? siteSettings.product.placeholder} // change to =>image ?? siteSettings.product.placeholder
             alt={name}
             fill
             sizes="(max-width: 768px) 100vw"
