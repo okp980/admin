@@ -43,7 +43,7 @@ const AttributeList = ({ attributes }: IProps) => {
       title: "Actions",
       dataIndex: "id",
       key: "actions",
-      align: "right",
+      align: "center",
       render: (id: string) => (
         <ActionButtons
           onDelete={() =>

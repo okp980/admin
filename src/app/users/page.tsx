@@ -39,13 +39,13 @@ const UsersPage = (props: Props) => {
         <div className="flex w-full flex-col items-center space-y-4 ms-auto md:flex-row md:space-y-0 xl:w-1/2">
           <Search onSearch={() => {}} />
 
-          <LinkButton
+          {/* <LinkButton
             href={Routes.user.create}
             className="h-12 w-full md:w-auto md:ms-6"
           >
             <span className="block md:hidden xl:block">+ Add Users</span>
             <span className="hidden md:block xl:hidden">+ Add Users</span>
-          </LinkButton>
+          </LinkButton> */}
         </div>
       </Card>
       <UsersList

@@ -7,6 +7,7 @@ import useModal from "@/hooks/useModal"
 import { Table } from "../ui/table/table"
 import { PaginatedInfo, ShippingMethod } from "@/utils/types"
 import Pagination from "../ui/pagination/pagination"
+import { getPrice } from "@/utils/helpers"
 
 export type IProps = {
   shipping: ShippingMethod[] | undefined
@@ -23,7 +24,9 @@ const ShippingList = ({ shipping, paginatorInfo, onPagination }: IProps) => {
       dataIndex: "title",
       key: "title",
       align: "left",
-      render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
+      render: (name: any) => (
+        <span className="whitespace-nowrap capitalize">{name}</span>
+      ),
     },
     {
       title: "Description",
@@ -41,7 +44,7 @@ const ShippingList = ({ shipping, paginatorInfo, onPagination }: IProps) => {
       key: "duration",
       align: "center",
       render: (name: any) => (
-        <span className="whitespace-nowrap">{`${name} days`}</span>
+        <span className="whitespace-nowrap capitalize">{`${name} days`}</span>
       ),
     },
     {
@@ -50,14 +53,16 @@ const ShippingList = ({ shipping, paginatorInfo, onPagination }: IProps) => {
       dataIndex: "charge",
       key: "charge",
       align: "center",
-      render: (name: any) => <span className="whitespace-nowrap">{name}</span>,
+      render: (amount: any) => (
+        <span className="whitespace-nowrap">{getPrice(amount)}</span>
+      ),
     },
 
     {
       title: "Actions",
       dataIndex: "id",
       key: "actions",
-      align: "right",
+      align: "center",
       render: (id: string) => (
         <ActionButtons
           onDelete={() =>

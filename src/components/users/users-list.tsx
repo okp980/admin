@@ -29,6 +29,9 @@ const UsersList = ({ users, paginatorInfo, onPagination }: IProps) => {
       dataIndex: "role",
       key: "role",
       align: "center",
+      render: (permission: any) => (
+        <span className="whitespace-nowrap capitalize">{permission}</span>
+      ),
     },
     {
       title: "Verified Email",
@@ -36,7 +39,9 @@ const UsersList = ({ users, paginatorInfo, onPagination }: IProps) => {
       key: "verified_email",
       align: "center",
       render: (verified: any) => (
-        <span className="whitespace-nowrap">{`${verified}`}</span>
+        <span className="whitespace-nowrap capitalize">{`${
+          verified ? "yes" : "no"
+        }`}</span>
       ),
     },
     {
@@ -45,27 +50,29 @@ const UsersList = ({ users, paginatorInfo, onPagination }: IProps) => {
       key: "isActive",
       align: "center",
       render: (active: any) => (
-        <span className="whitespace-nowrap">{`${active}`}</span>
+        <span className="whitespace-nowrap capitalize">{`${
+          active ? "yes" : "no"
+        }`}</span>
       ),
     },
 
-    {
-      title: "Actions",
-      dataIndex: "id",
-      key: "actions",
-      align: "right",
-      render: (id: string) => (
-        <ActionButtons
-          onDelete={() =>
-            handleOpenModal({
-              view: MODAL_VIEW.DELETE_PRODUCT,
-              modalPayload: id,
-            })
-          }
-          href={Routes.user.edit(id)}
-        />
-      ),
-    },
+    // {
+    //   title: "Actions",
+    //   dataIndex: "id",
+    //   key: "actions",
+    //   align: "center",
+    //   render: (id: string) => (
+    //     <ActionButtons
+    //       onDelete={() =>
+    //         handleOpenModal({
+    //           view: MODAL_VIEW.DELETE_PRODUCT,
+    //           modalPayload: id,
+    //         })
+    //       }
+    //       href={Routes.user.edit(id)}
+    //     />
+    //   ),
+    // },
   ]
 
   return (
