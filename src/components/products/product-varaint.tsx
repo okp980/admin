@@ -39,9 +39,23 @@ const ProductVariant = ({
                   key={i}
                   className="mb-10 border-b border-dashed border-border-200"
                 >
-                  <span className="block text-body-dark font-semibold text-xl leading-none mb-8">
-                    Variation {i + 1}
-                  </span>
+                  <div className="flex  items-center mb-8 gap-5">
+                    <span className="block text-body-dark font-semibold text-xl leading-none ">
+                      Variation {i + 1}
+                    </span>
+
+                    {values.variation.length > 1 && (
+                      <button
+                        onClick={() => {
+                          remove(i)
+                        }}
+                        type="button"
+                        className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none"
+                      >
+                        Remove Variation
+                      </button>
+                    )}
+                  </div>
 
                   <FieldArray name={`variation.${i}.attributeValues`}>
                     {({ push: pushAttribute, remove: removeAttribute }) => (
@@ -50,19 +64,21 @@ const ProductVariant = ({
                           v.attributeValues.map(
                             (_: any, attriIndex: number) => (
                               <div key={attriIndex}>
-                                <div className="flex items-center justify-between  border-b border-dashed border-border-base py-3">
+                                <div className="flex items-center gap-5 border-b border-dashed border-border-base py-3">
                                   <span className="block text-body-dark font-semibold text-lg leading-none ">
                                     Attribute {attriIndex + 1}
                                   </span>
-                                  <button
-                                    onClick={() => {
-                                      removeAttribute(attriIndex)
-                                    }}
-                                    type="button"
-                                    className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none"
-                                  >
-                                    remove
-                                  </button>
+                                  {v.attributeValues.length > 1 && (
+                                    <button
+                                      onClick={() => {
+                                        removeAttribute(attriIndex)
+                                      }}
+                                      type="button"
+                                      className="text-sm text-red-500 transition-colors duration-200 hover:text-red-700 focus:outline-none"
+                                    >
+                                      Remove Option
+                                    </button>
+                                  )}
                                 </div>
 
                                 <div className="grid grid-cols-fit gap-5">
@@ -127,6 +143,7 @@ const ProductVariant = ({
                           )}
                         <div className="mb-14 flex items-end">
                           <Button
+                            variant="outline"
                             onClick={() =>
                               pushAttribute({ attribute: "", value: "" })
                             }
@@ -188,8 +205,9 @@ const ProductVariant = ({
                 </div>
               ))}
 
-            <div className="flex flex-row items-end justify-end">
+            <div className="flex flex-row items-center">
               <Button
+                variant="outline"
                 onClick={() =>
                   push({
                     attributeValues: [{ attribute: "", value: "" }],
