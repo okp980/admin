@@ -10,6 +10,7 @@ import Button from "../ui/button/button"
 import { useRouter } from "next/navigation"
 import ProductVariantForm from "./product-varaint-form"
 import { ProductResult } from "@/utils/types"
+import CustomEditor from "../ui/customEditor/customEditor"
 
 type Props = {
   categories: any[]
@@ -192,11 +193,22 @@ const ProductForm = ({
 
             <Card className="w-full sm:w-8/12 md:w-2/3">
               <TextField name="name" label="Name" className="mb-5" />
-              <TextField
+              {/* <TextField
                 name="description"
                 label="Description"
                 className="mb-5"
-              />
+              /> */}
+              <div className="mb-4">
+                <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+                  Description
+                </label>
+                <CustomEditor
+                  value={values.description}
+                  onEditorChange={(content) => {
+                    setFieldValue("description", content)
+                  }}
+                />
+              </div>
               <TextField name="brand" label="Brand" className="mb-5" />
               <TextField
                 name="weight"

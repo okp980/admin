@@ -1,6 +1,6 @@
 export const ORDER_STATUS = [
   { name: "Order Pending", status: "order-pending", serial: 1 },
-  { name: "Order Processing", status: "order-processing", serial: 2 },
+  { name: "Order Processing", status: "`order-processing`", serial: 2 },
   {
     name: "Order At Local Facility",
     status: "order-at-local-facility",
