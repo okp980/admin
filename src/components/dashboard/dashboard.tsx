@@ -47,7 +47,7 @@ const Dashboard = (props: Props) => {
       ? productError
       : null
 
-    return <ErrorMessage message={errorMessage?.data.error} />
+    return <ErrorMessage message={errorMessage?.data?.error} />
   }
   let salesByYear: number[] = Array.from({ length: 12 }, (_) => 0)
   if (!!analytics?.data?.totalYearSaleByMonth?.length) {

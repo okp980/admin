@@ -177,8 +177,11 @@ const ProductList = ({
             : quantity
 
         return (
-          <span className="whitespace-nowrap" title={renderQuantity.toString()}>
-            {renderQuantity.toString()}
+          <span
+            className="whitespace-nowrap"
+            title={renderQuantity?.toString()}
+          >
+            {renderQuantity?.toString()}
           </span>
         )
       },
