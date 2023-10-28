@@ -9,4 +9,5 @@ export const API_ENPOINTS = {
   users: "/users",
   shipping_methods: "/shipping-methods",
   login: "/auth/login-admin",
+  exchangeRate: "/exchange-rates",
 }

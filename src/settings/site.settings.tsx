@@ -5,6 +5,7 @@ import { BiCategory, BiCategoryAlt } from "react-icons/bi"
 import { AiFillTags } from "react-icons/ai"
 import { BsBasket3 } from "react-icons/bs"
 import { FaUsersCog, FaShippingFast } from "react-icons/fa"
+import { RiExchangeDollarLine } from "react-icons/ri"
 
 export const siteSettings = {
   authorizedLinks: [
@@ -66,9 +67,9 @@ export const siteSettings = {
     },
     {
       // href: Routes.coupon.list,
-      href: Routes.dashboard,
-      label: "Coupons",
-      icon: LuLayoutDashboard,
+      href: Routes.exchangeRate,
+      label: "Exchange Rate",
+      icon: RiExchangeDollarLine,
     },
     {
       href: Routes.dashboard,

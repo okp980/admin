@@ -8,6 +8,7 @@ export const Routes = {
   profile: "/profile",
   profileUpdate: "/profile-update",
   settings: "/settings",
+  exchangeRate: "/exchange-rate",
   tag: {
     ...routesFactory("/tags"),
   },

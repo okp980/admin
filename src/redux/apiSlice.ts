@@ -16,6 +16,7 @@ import {
   PRODUCT_TAG_NAME_TAG,
   SHIPPING_TAG,
   SUB_CATEGORY_TAG,
+  EXCHANGE_RATE_TAG,
 } from "@/utils/tagsTypes"
 import Router from "next/router"
 
@@ -64,6 +65,7 @@ export const apiSlice = createApi({
     SHIPPING_TAG,
     ATTRIBUTES_TAG,
     ORDERS_TAG,
+    EXCHANGE_RATE_TAG,
   ],
   endpoints: (builder) => ({}),
 })

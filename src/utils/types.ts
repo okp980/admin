@@ -26,6 +26,10 @@ export type ShippingType = {
   charge: string
   duration: string
 }
+export type ExchangeRateType = {
+  id?: string
+  rate: string
+}
 
 export interface PaginationParams {
   select?: string
@@ -91,6 +95,11 @@ export interface TagResult {
   id: string
   name: string
   category: CategoryResult
+}
+export interface ExchangeRateResult {
+  id: string
+  rate: number
+  currency: string
 }
 export interface OrderResult {
   _id: string
@@ -218,6 +227,8 @@ export interface SubCategoryResultResponse
   extends ResponseInterface<SubCategoryResult> {}
 
 export interface TagResponse extends ResponseInterface<TagResult> {}
+export interface ExchangeRateResponse
+  extends ResponseInterface<ExchangeRateResult> {}
 
 export interface PaginatedResponse<T> {
   message: string
