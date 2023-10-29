@@ -5,6 +5,7 @@ import Card from "../common/card"
 import FileField from "../form/fileField"
 import SelectField from "../form/selectField"
 import TextField from "../form/textField"
+import TextAreaField from "../form/textAreaField"
 import ProductSimpleForm from "./product-simple-form"
 import Button from "../ui/button/button"
 import { useRouter } from "next/navigation"
@@ -192,21 +193,33 @@ const ProductForm = ({
             />
 
             <Card className="w-full sm:w-8/12 md:w-2/3">
-              <TextField name="name" label="Name" className="mb-5" />
+              <TextField
+                name="name"
+                label="Name"
+                className="mb-5"
+                maxLength={80}
+              />
               {/* <TextField
                 name="description"
                 label="Description"
                 className="mb-5"
               /> */}
               <div className="mb-4">
-                <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
+                {/* <label className="mb-3 block text-sm font-semibold leading-none text-body-dark">
                   Description
-                </label>
-                <CustomEditor
+                </label> */}
+                {/* <CustomEditor
                   value={values.description}
                   onEditorChange={(content) => {
                     setFieldValue("description", content)
                   }}
+                /> */}
+                <TextAreaField
+                  name="description"
+                  label="Description"
+                  className="mb-5"
+                  maxLength={400}
+                  height={500}
                 />
               </div>
               <TextField name="brand" label="Brand" className="mb-5" />

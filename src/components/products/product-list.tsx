@@ -195,7 +195,7 @@ const ProductList = ({
       render: (inStock: boolean, record: any) => (
         <div>
           <Badge
-            text={`${inStock ? "in" : "out-of"}-stock `}
+            text={`${inStock ? "in" : "out of"} stock `}
             color={cn({ "bg-red-600": !inStock, "bg-green-600": inStock })}
             animate={inStock ? false : true}
           />
