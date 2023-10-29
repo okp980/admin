@@ -1,12 +1,12 @@
 export enum OrderStatus {
-  ORDER_PROCESSING = "order-processing",
-  ORDER_PENDING = "order-pending",
-  ORDER_COMPLETED = "order-completed",
-  ORDER_CANCELLED = "order-cancelled",
-  ORDER_REFUNDED = "order-refunded",
-  ORDER_FAILED = "order-failed",
-  ORDER_AT_LOCAL_FACILITY = "order-at-local-facility",
-  ORDER_OUT_FOR_DELIVERY = "order-out-for-delivery",
+  ORDER_PROCESSING = "processing",
+  ORDER_PENDING = "pending",
+  ORDER_COMPLETED = "completed",
+  ORDER_CANCELLED = "cancelled",
+  ORDER_REFUNDED = "refunded",
+  ORDER_FAILED = "failed",
+  ORDER_AT_LOCAL_FACILITY = "at-local-facility",
+  ORDER_OUT_FOR_DELIVERY = "out-for-delivery",
 }
 
 // Tag Type

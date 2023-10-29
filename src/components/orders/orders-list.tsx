@@ -77,7 +77,7 @@ const OrdersList = ({ orders, paginatorInfo, onPagination }: IProps) => {
       align: "center",
       render: (status: any) => (
         // <span className="whitespace-nowrap">{status}</span>
-        <Badge text={status} color={StatusColor(status)} />
+        <Badge text={status.replace(/-/g, " ")} color={StatusColor(status)} />
       ),
     },
 

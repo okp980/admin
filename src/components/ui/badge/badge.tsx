@@ -20,7 +20,7 @@ const Badge: React.FC<BadgeProps> = (props) => {
   } = props
 
   const classes = {
-    root: "px-3 py-1 rounded-full text-xs whitespace-nowrap relative",
+    root: "px-3 py-1 rounded-full text-xs whitespace-nowrap relative uppercase",
     animate: "animate-pulse",
     default: "bg-accent",
     text: "text-light",

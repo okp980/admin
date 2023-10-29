@@ -28,8 +28,6 @@ const ExchangeRatePage = (props: Props) => {
     rate: "",
   }
 
-  console.log(rate_data)
-
   const handleEditRate = useCallback(async (value: ExchangeRateType) => {
     try {
       await editRate({ id: rate, rate: value.rate }).unwrap()
